@@ -2,8 +2,6 @@
 #	Here be my shell stuff
 #
 
-PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] ' 
-
 export PATH="/usr/local/heroku/bin:/usr/local/opt/ruby/bin:$PATH"
 
 export CLICOLOR=1
