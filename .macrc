@@ -1,0 +1,6 @@
+# Mac specific stuff.
+
+export PATH=$PATH:/Applications/apache-jmeter-2.10/bin
+
+export JMETER_HOME=/Applications/apache-jmeter-2.10
+ 
