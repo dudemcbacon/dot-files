@@ -1,50 +1,45 @@
-# MacPorts Installer addition on 2013-04-16_at_10:49:23: adding an appropriate PATH variable for use with MacPorts.
-#export PATH=/usr/local/opt/ruby/bin:/usr/local/bin:/usr/local/sbin:/opt/local/bin:/opt/local/sbin:~/bin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-# PS1
-PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] ' 
+#
+#	Here be my shell stuff
+#
 
 alias ls='ls -lha -G' 
+
 alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
 alias listen="lsof -i -n | grep 'LISTEN'"
 
-export EDITOR="nano"
-export CLICOLOR=1
-export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 
-# Unlimited History
+# stat cmds
+alias meminfo='free -m -l -t'
+alias psmem='ps auxf | sort -nr -k 4'
+alias psmem10='ps auxf | sort -nr -k 4 | head -10'
+alias pscpu='ps auxf | sort -nr -k 3'
+alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
+alias cpuinfo='lscpu'
+alias cpuinfo2='less /proc/cpuinfo'
+
+
+PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] ' 
+
+export PATH="/usr/local/heroku/bin:/usr/local/opt/ruby/bin:$PATH"
+
+export CLICOLOR=1
+export EDITOR="nano"
 export HISTFILESIZE=
 export HISTSIZE=
-
-# pip should only run if there is a virtualenv currently activated
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
 export PIP_REQUIRE_VIRTUALENV=true
-# cache pip-installed packages to avoid re-downloading
 export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export GOPATH=~/gopath
 
-# cx_Oracle crap...
-export ORACLE_HOME=/Users/bburn1/oracle
-#export DYLD_LIBRARY_PATH=$ORACLE_HOME
-#export LD_LIBRARY_PATH=$ORACLE_HOME
+# Source .nikerc for Nike specific functions
+. ~/.nikerc
 
-# Go puts it's stuff here...
-export GOPATH=~/.gopath
-
-##
-# Your previous /Users/bburn1/.profile file was backed up as /Users/bburn1/.profile.macports-saved_2013-09-20_at_12:00:31
-##
-
-# MacPorts Installer addition on 2013-09-20_at_12:00:31: adding an appropriate PATH variable for use with MacPorts.
-#export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
-
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
-
-### Added for brewed ruby.
-export PATH="/usr/local/opt/ruby/bin:$PATH"
-
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+# Determine OS and apply specific functions
+if [ `uname` == 'Darwin' ]; then
+	. ~/.macrc
+elif [`uname` == 'Linux' ]; then
+	. ~/.linuxrc
+fi
