@@ -50,8 +50,10 @@ alias cpuinfo2='less /proc/cpuinfo'
 . ~/.nikerc
 
 # Determine OS and apply specific functions
-if [ `uname` == 'Darwin' ]; then
+if [[ `uname` == 'Darwin' ]]; then
 	. ~/.macrc
-elif [`uname` == 'Linux' ]; then
+fi
+
+if [[ `uname` == 'Linux' ]]; then
 	. ~/.linuxrc
 fi

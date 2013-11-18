@@ -6,13 +6,14 @@
 
 . /cust/tools/bin/b2c.sh
 
-if [ `hostname` == 'nike.vagrant' ]; then
+if [[ `hostname` == 'nike.vagrant' ]]; then
   export PATH=$PATH:/vagrant/scripts
   PS1='\[\033[01;33m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
   function ep { nano /vagrant/.profile; source ~/.profile; }
-else
+fi
+
+if [[ `hostname` != 'nike.vagrant' ]]; then
   export PATH=/cust/soe/opt/python/2.7.3/bin/:/usr/local/bin:$PATH:~/vagrant/nike-vagrant/scripts:~/brandon
-  PS1='\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\] '
   function ep { nano ~/vagrant/.profile; source ~/.profile; }
   export http_proxy=http://72.37.244.131:8080
   export https_proxy=http://72.37.244.131:8080
@@ -20,16 +21,8 @@ fi
 
 # useful functions/aliases
 function vcstags { mvn com.nike.mojo:nike-deploy-maven-plugin:list-vcstags -Dnike-deploy.module=$1; }
-export -f vcstags
-
 function deploymod { mvn com.nike.mojo:nike-deploy-maven-plugin:1.0.1-SNAPSHOT:deploy -Dnike-deploy.env=$1 -Dnike-deploy.user=bburn1 -Dnike-deploy.password=Sgollerskates1 -Dnike-deploy.modules=$2; }
-export -f deploymod
-
-export -f ep 
 
 # Undeploy an app from an enivornment.
 function undeploy { rdeploy -undeploy --env $1 --app $2 --user bburn1; }
-export -f undeploy
-
 function deployr { http_proxy="" rdeploy --env $1 --app $2 --version 2 --user bburn1; }
-export -f deployr
