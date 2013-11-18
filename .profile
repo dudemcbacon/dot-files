@@ -14,7 +14,7 @@ export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
 export GOPATH=~/gopath
 
 # misc
-alias ls='ls -lha -G' 
+alias ls='ls -lha -G --color' 
 alias listen="lsof -i -n | grep 'LISTEN'"
 
 alias grep='grep --color=auto'
