@@ -11,7 +11,9 @@ ZSH_THEME="robbyrussell"
 alias zshconfig="subl ~/.zshrc"
 
 # Look in .oh-my-zsh/plugins for more.
-plugins=(brew colored-man git osx, python, tmux, virtualenv)
+plugins=(tmux brew colored-man git osx python virtualenv)
+
+export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 
