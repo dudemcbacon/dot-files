@@ -2,8 +2,6 @@
 #	Here be my shell stuff
 #
 
-export PATH="/usr/local/heroku/bin:/usr/local/opt/ruby/bin:$PATH"
-
 export EDITOR="subl"
 export HISTFILESIZE=32768
 export HISTSIZE=32768
@@ -33,3 +31,6 @@ fi
 if [[ `uname` == 'Linux' ]]; then
 	. ~/.linuxrc
 fi
+
+# This PATH is the boss PATH
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/local/heroku/bin:/usr/local/opt/ruby/bin:$PATH"
