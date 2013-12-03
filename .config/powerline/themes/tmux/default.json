@@ -17,6 +17,9 @@
 	},
 	"segments": {
 		"left": [
+      {
+        "name": "virtualenv"
+      },
 			{
 				"name": "external_ip"
 			}
