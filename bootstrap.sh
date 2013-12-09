@@ -10,15 +10,17 @@ DEV_DIR = "${HOME}/development"
 zsh --version 2> /dev/null
 if [ $? -eq 127 ]; then
   echo "Install ZSH!~"
+  exit 1
 fi
 
 git --version 2> /dev/null
 if [ $? -eq 127 ]; then
   echo "Install Git!~"
+  exit 1
 fi
 
 # Install oh-my-zsh
-git clone git://github.com/robbyrussell/oh-my-zsh.git $DEV_DIR/.oh-my-zsh
+git clone git://github.com/robbyrussell/oh-my-zsh.git ${DEV_DIR}/.oh-my-zsh
 
 # Link dot-files
 ln -s .aliases ~/
