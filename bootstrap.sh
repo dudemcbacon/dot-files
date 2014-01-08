@@ -34,6 +34,7 @@ for f in .*
 do
   if [ $f != "." ] && [ $f != ".." ]; then
     FILE=${HOME}/${f}
+    # Does a real (non-symbolic) file exist?
     if [ -e $FILE ]; then
       echo "Replace $FILE? [y/N]"
       read answer
@@ -42,6 +43,8 @@ do
         mv $FILE $FILE.old
         ln -s $f ~/
       fi
+    elif [ -h $FILE ]; then
+      echo "$f is already linked."
     else
       echo "Linking $f..."
       ln -s $f ~/
