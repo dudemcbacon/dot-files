@@ -1,8 +1,10 @@
 # Source my old dot-files.
 source ~/.profile
 
+DEV_DIR=${HOME}/development
+
 # Path to your oh-my-zsh configuration.
-ZSH=$HOME/.oh-my-zsh
+ZSH=${DEV_DIR}/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -16,7 +18,7 @@ alias zshconfig="subl ~/.zshrc"
 # Look in .oh-my-zsh/plugins for more.
 plugins=(tmux brew colored-man git osx python virtualenv)
 
-export ZSH_TMUX_AUTOSTART=true
+#export ZSH_TMUX_AUTOSTART=true
 
 source $ZSH/oh-my-zsh.sh
 

@@ -4,7 +4,11 @@
 
 # Export necessary environment variables to run correctly
 
-. /cust/tools/bin/b2c.sh
+if [ -e /cust/tools/bin/b2c.sh ]; then
+  . /cust/tools/bin/b2c.sh
+else
+  echo "Nike b2c tools not installed."
+fi
 
 if [[ `hostname` == 'nike.vagrant' ]]; then
   export PATH=$PATH:/vagrant/scripts
