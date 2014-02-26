@@ -49,7 +49,7 @@ fi
 # Link dot-files
 for f in .*
 do
-  if [ $f != "." ] && [ $f != ".." ]; then
+  if [ $f != "." ] && [ $f != ".." ] && [ $f != ".git" ]; then
     FILE=${HOME}/${f}
     GIT_FILE=`pwd`/${f}
     # Does a real (non-symbolic) file exist?
