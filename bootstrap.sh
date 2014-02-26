@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # 1a. Make sure zsh is installed.
 # 1b. Make sure git is installed.
@@ -56,7 +56,7 @@ do
     if [ -e $FILE ]; then
       echo "Replace $FILE? [y/N]"
       read answer
-      if [ $answer == "y" ]; then
+      if [ "$answer" == "y" ]; then
         echo "Replacing $f..."
         mv $FILE $FILE.old
         ln -s $GIT_FILE ~/
