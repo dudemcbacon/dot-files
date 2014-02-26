@@ -19,6 +19,12 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
+tmux -V 2>&1 /dev/null
+if [ $? -eq 127 ]; then
+  echo "Install Tmux!~"
+  exit 1
+fi
+
 # Install oh-my-zsh
 if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
   echo "Installing oh-my-zsh..."

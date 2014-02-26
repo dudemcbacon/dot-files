@@ -2,7 +2,7 @@
 #	Here be my shell stuff
 #
 
-export EDITOR="subl"
+export EDITOR="nano"
 export HISTFILESIZE=32768
 export HISTSIZE=32768
 
@@ -21,7 +21,7 @@ export MANPAGER="less -X"
 . ~/.aliases
 
 # Source .nikerc for Nike specific functions
-. ~/.nikerc
+#. ~/.nikerc
 
 # Apply os-specific aliases, functions, and variables
 if [[ `uname` == 'Darwin' ]]; then
