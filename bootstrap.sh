@@ -2,6 +2,8 @@
 #
 # 1a. Make sure zsh is installed.
 # 1b. Make sure git is installed.
+# 1c. Make sure tmux is installed
+# 1d. Make sure pip is installed.
 # 2. Install oh-my-zsh from GitHub
 # 3. Link appropriate dot-files
 #
@@ -25,6 +27,12 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
+pip --version 2>&1 /dev/null
+if [ $? -eq 127 ]; then
+  echo "Install pip!~"
+  exit 1
+fi
+
 # Install oh-my-zsh
 if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
   echo "Installing oh-my-zsh..."
@@ -36,10 +44,11 @@ if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
 fi
 
 # Install powerline
-if [ ! -e ${DEV_DIR}/powerline ]; then
+pip show powerline | grep powerline 2>&1
+if [ $? -eq 1 ]; then
   echo "Installing powerline..."
   git clone https://github.com/Lokaltog/powerline.git ${DEV_DIR}/powerline
-  sudo python ${DEV_DIR}/powerline/setup.py install
+  python ${DEV_DIR}/powerline/setup.py install --user
   if [ $? -eq 128 ]; then
     echo "Problem installing powerline. Do you need to set a proxy?"
     exit 1
