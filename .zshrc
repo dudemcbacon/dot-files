@@ -12,13 +12,17 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# Source my old dot-files.
-source ~/.profile
-
-DEV_DIR=${HOME}/development
+# Misc. config variables 
+export EDITOR="nano"
+export HISTFILESIZE=32768
+export HISTSIZE=32768
+export CLICOLOR=1
+export LSCOLORS=gxBxhxDxfxhxhxhxhxcxcx
+export GREP_OPTIONS="--color=auto"
+export MANPAGER="less -X"
+export DEV_DIR=${HOME}/development
 
 # Detect OS
-
 UNAME=`uname`
 
 # Fallback info
@@ -41,6 +45,16 @@ else
       DISTRO='RHEL'
     fi
   fi
+fi
+
+# Source universal aliases:
+. ~/.aliases
+
+# OS specific aliases, functions, variables
+if [[ `uname` == 'Darwin' ]]; then
+  . ~/.macrc
+elif [[ `uname` == 'Linux' ]]; then
+  . ~/.linuxrc
 fi
 
 # oh-my-zsh config
