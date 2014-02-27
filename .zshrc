@@ -1,26 +1,66 @@
+#
+# .zshrc --> Universal Globals for ZSH
+# Props to github.com/jdavis who inspired much of this.
+#
+
+# For sudo-ing aliases
+# https://wiki.archlinux.org/index.php/Sudo#Passing_aliases
+alias sudo='sudo '
+
+# Ensure languages are set
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # Source my old dot-files.
 source ~/.profile
 
 DEV_DIR=${HOME}/development
 
-# Path to your oh-my-zsh configuration.
-ZSH=${DEV_DIR}/.oh-my-zsh
+# Detect OS
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+UNAME=`uname`
+
+# Fallback info
+CURRENT_OS='Linux'
+DISTRO=''
+
+if [[ $UNAME == 'Darwin' ]]; then
+  CURRENT_OS='OS X'
+elif [[ $UNAME =~ 'CYGWIN' ]]; then
+  CURRENT_OS='Cygwin'
+else
+  # Must be Linux, determine distro
+  # Work in progress, so far CentOS is the only Linux distro I have needed to
+  # determine
+  if [[ -f /etc/redhat-release ]]; then
+    # CentOS or Redhat?
+    if grep -q "CentOS" /etc/redhat-release; then
+      DISTRO='CentOS'
+    else
+      DISTRO='RHEL'
+    fi
+  fi
+fi
+
+# oh-my-zsh config
+ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_THEME="robbyrussell"
 
-# Example aliases
-alias zshconfig="subl ~/.zshrc"
-
-# Look in .oh-my-zsh/plugins for more.
+# Universal plugins
 plugins=(tmux colored-man python)
 
-#export ZSH_TMUX_AUTOSTART=true
+# OS specifig plugins
+if [[ $CURRENT_OS == 'OS X' ]]; then
+  plugins+=(osx brew)
+elif [[ $CURRENT_OS == 'Linux' ]]; then
+  plugins+=()
+  if [[ $DISTRO == 'CentOS' ]]; then
+    plugins+=(centos)
+  fi
+elif [[ $CURRENT_OS == 'Cygwin' ]]; then
+  plugins+=(cygwin)
+fi  
 
 source $ZSH/oh-my-zsh.sh
 
-# Customize to your needs...
-export PATH=$PATH:/usr/local/bin:/cust/soe/usr/bin:/bin:/cust/tools/bin:/usr/bin:/sbin:/usr/sbin:/lc/bin:/lc/sbin:/usr/local/bin:/usr/local/nike/bin:/Users/bburn1/vagrant/nike-vagrant/scripts:/Users/bburn1/brandon:/Applications/apache-jmeter-2.10/bin
