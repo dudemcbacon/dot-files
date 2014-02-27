@@ -12,7 +12,7 @@
 			}
 		},
 		"spaces": 1,
-		"log_file": "/Users/bburn1/powerline.log"
+		"log_file": "~/powerline.log"
 	},
 	"ext": {
 		"ipython": {
