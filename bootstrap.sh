@@ -46,9 +46,12 @@ fi
 # Install powerline
 pip show powerline | grep powerline 2>&1
 if [ $? -eq 1 ]; then
-  echo "Installing powerline..."
+  echo "Cloning powerline..."
   git clone https://github.com/Lokaltog/powerline.git ${DEV_DIR}/powerline
-  python ${DEV_DIR}/powerline/setup.py install --user
+  cd ${DEV_DIR}/powerline
+  echo "Installing powerline..."
+  python setup.py install --user
+  cd ${DEV_DIR}/dot-files
   if [ $? -eq 128 ]; then
     echo "Problem installing powerline. Do you need to set a proxy?"
     exit 1
