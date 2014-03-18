@@ -31,7 +31,7 @@ DISTRO=''
 
 if [[ $UNAME == 'Darwin' ]]; then
   CURRENT_OS='OS X'
-elif [[ $UNAME =~ 'CYGWIN' ]]; then
+elif [[ $UNAME == 'CYGWIN' ]]; then
   CURRENT_OS='Cygwin'
 else
   # Must be Linux, determine distro
