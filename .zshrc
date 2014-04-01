@@ -13,7 +13,8 @@ export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
 # Misc. config variables 
-export EDITOR="nano"
+export TERM="xterm-256color"
+export EDITOR="vim"
 export HISTFILESIZE=32768
 export HISTSIZE=32768
 export CLICOLOR=1
