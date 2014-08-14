@@ -1,9 +1,7 @@
 # 
 # Here be all the stuff for Macs! See https://github.com/mathiasbynens/dotfiles/
 #
-
-export PATH=$PATH:/Applications/apache-jmeter-2.10/bin
-export JMETER_HOME=/Applications/apache-jmeter-2.10
+export PATH=/usr/local/bin:${PATH}
 
 # Flush Directory Service cache
 alias flush="dscacheutil -flushcache && killall -HUP mDNSResponder"
