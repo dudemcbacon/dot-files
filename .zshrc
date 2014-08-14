@@ -23,6 +23,10 @@ export GREP_OPTIONS="--color=auto"
 export MANPAGER="less -X"
 export DEV_DIR=${HOME}/development
 
+# TMUX Options
+export ZSH_TMUX_AUTOSTART=false
+
+
 # Detect OS
 UNAME=`uname`
 
@@ -78,6 +82,3 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
 fi  
 
 source $ZSH/oh-my-zsh.sh
-
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
