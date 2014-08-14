@@ -1,5 +1,22 @@
 [user]
 	email = gentoolicious@gmail.com
 	name = Brandon Burnett
+[alias]
+  undo-commit = reset --soft HEAD~1
+  st = status
+  di = diff
+  co = checkout
+  ahead = log origin/master..HEAD --oneline
+  graph = log --graph --date-order -C -M --pretty=format:\"<%h> %ad [%an] %Cgreen%d%Creset %s\" --all --date=short
+  create-pull-request = !sh -c 'stash pull-request $0'
+  last-tag = !sh -c 'git tag -l | grep -v ^tags/ | sort -V | tail -1'
+  list-versions = !sh -c 'git tag -l | sort -V'
+  compare-tags = !sh -c 'git log --pretty=oneline --reverse tags/$0..tags/$1'
+  branch-sort  = !sh -c 'git branch | sort -V'
+  show-file-diff = diff --name-only
 [push]
-	default = simple
+  default = simple
+[color]
+  diff = auto
+[merge]
+  tool = vimdiff
