@@ -1,1 +1,3 @@
 .config/Trolltech.conf
+.vim/.netrwhist
+.vim/bundle/tabular
