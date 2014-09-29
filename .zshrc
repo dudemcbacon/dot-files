@@ -12,6 +12,12 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
+# F5_Credentials
+export F5_HOSTNAME=qa-bal01.ptk01.nweacolo.pvt
+export F5_USERNAME=brandon.burnett
+export F5_PASSWORD=\$gollerskates1
+
+
 # Misc. config variables 
 export TERM="xterm-256color"
 export EDITOR="vim"
@@ -64,7 +70,8 @@ fi
 
 # oh-my-zsh config
 ZSH=${DEV_DIR}/.oh-my-zsh
-ZSH_THEME="robbyrussell"
+ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
+ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
 plugins=(tmux colored-man python)
