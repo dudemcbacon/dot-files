@@ -12,11 +12,7 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# F5_Credentials
-export F5_HOSTNAME=qa-bal01.ptk01.nweacolo.pvt
-export F5_USERNAME=brandon.burnett
-export F5_PASSWORD=\$gollerskates1
-
+source ~/.nwearc
 
 # Misc. config variables 
 export TERM="xterm-256color"
