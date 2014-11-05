@@ -1,6 +1,8 @@
 [user]
 	email = gentoolicious@gmail.com
-	name = Brandon Burnett
+  name = Brandon Burnett
+[core]
+  excludesfile = ~/.gitignore
 [alias]
   undo-commit = reset --soft HEAD~1
   st = status
