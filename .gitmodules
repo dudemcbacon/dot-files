@@ -1,3 +1,6 @@
 [submodule ".vim/bundle/tabular"]
 	path = .vim/bundle/tabular
 	url = git://github.com/godlygeek/tabular.git
+[submodule ".vim/bundle/neobundle"]
+	path = .vim/bundle/neobundle
+	url = https://github.com/Shougo/neobundle.vim.git
