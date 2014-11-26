@@ -21,6 +21,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'Raimondi/delimitMate'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
@@ -38,10 +39,10 @@ set shiftwidth=2
 set expandtab
 
 set number
-
 set mouse=a
 
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
+
