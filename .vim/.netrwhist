@@ -1,9 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/home/brandon.burnett/development/puppet/modules/load_balancer/templates'
-let g:netrw_dirhist_2='/home/brandon.burnett/development/puppet/modules/load_balancer'
-let g:netrw_dirhist_3='/home/brandon.burnett/development/puppet/modules/profile/manifests/help_server'
-let g:netrw_dirhist_4='/home/brandon.burnett/development/puppet/modules/admin'
-let g:netrw_dirhist_5='/home/brandon.burnett/development/puppet/modules/admin/templates'
-let g:netrw_dirhist_6='/home/brandon.burnett/development/map2-hiera/environments/se'
-let g:netrw_dirhist_7='/home/brandon.burnett/development/map2-hiera-team/environments/team04'
