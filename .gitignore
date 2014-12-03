@@ -1,5 +1,5 @@
 .config/Trolltech.conf
-.vim/.netrwhist
+.netrwhist
 .vim/bundle/*
 .vim/bundle/tabular
 .nfs00000000000*
