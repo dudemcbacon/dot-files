@@ -22,6 +22,7 @@ NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'godlygeek/tabular'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
