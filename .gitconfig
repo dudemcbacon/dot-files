@@ -16,6 +16,7 @@
   compare-tags = !sh -c 'git log --pretty=oneline --reverse tags/$0..tags/$1'
   branch-sort  = !sh -c 'git branch | sort -V'
   show-file-diff = diff --name-only
+  compress = !sh -c 'git reset --soft HEAD~$0'
 [push]
   default = simple
 [color]

@@ -23,6 +23,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'bronson/vim-trailing-whitespace'
 NeoBundle 'Raimondi/delimitMate'
 NeoBundle 'godlygeek/tabular'
+NeoBundle 'bling/vim-airline'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
@@ -47,3 +48,9 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
+set wildmode=longest,list,full
+set wildmenu
+
+" vim-airline options
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
