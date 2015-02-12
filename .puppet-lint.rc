@@ -1,0 +1,5 @@
+--no-autoloader_layout-check
+--no-80chars-check
+
+# Added because we use a few modules that inherit params (ie sudo)
+--no-class_inherits_from_params_class-check

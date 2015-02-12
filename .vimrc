@@ -16,14 +16,15 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 " My NeoBundles
+NeoBundle 'CmdlineComplete'
+NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'godlygeek/tabular'
+NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
-NeoBundle 'scrooloose/syntastic'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'bling/vim-airline'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
