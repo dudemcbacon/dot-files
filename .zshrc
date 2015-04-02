@@ -14,7 +14,7 @@ export LC_ALL=en_US.UTF-8
 
 source ~/.nwearc
 
-# Misc. config variables 
+# Misc. config variables
 export TERM="xterm-256color"
 export EDITOR="vim"
 export HISTFILESIZE=32768
@@ -27,7 +27,6 @@ export DEV_DIR=${HOME}/development
 
 # TMUX Options
 export ZSH_TMUX_AUTOSTART=false
-
 
 # Detect OS
 UNAME=`uname`
@@ -82,6 +81,7 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
   fi
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
-fi  
+fi
+
 
 source $ZSH/oh-my-zsh.sh
