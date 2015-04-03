@@ -1,0 +1,6 @@
+# F5 Creds
+export F5_HOSTNAME=qa-bal01.ptk01.nweacolo.pvt
+export F5_USERNAME=brandon.burnett
+
+# Puppet Directory
+alias pup='cd ~/puppet'

@@ -45,7 +45,7 @@ fi
 
 # Install powerline
 
-if [ $NO_PIP = "yes" ]; then
+if [ $NO_PIP -eq "yes" ]; then
   echo "Skipping powerline installation."
 else
   pip show powerline | grep powerline 2>&1
@@ -88,4 +88,4 @@ do
 done
 
 # Change shell to zsh
-chsh -s /bin/zsh
+sudo chsh -s /bin/zsh
