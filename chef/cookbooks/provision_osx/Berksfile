@@ -1,0 +1,7 @@
+source 'https://supermarket.chef.io'
+
+cookbook 'chef_gem', '~> 0.1.0'
+cookbook 'homebrew', '~> 1.13.0'
+cookbook 'rvm', '~> 0.9.4'
+cookbook 'build-essential', '~> 2.2.3'
+cookbook 'sudo', '~> 2.7.2'
