@@ -69,7 +69,7 @@ ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
-plugins=(tmux colored-man python)
+plugins=(ssh-agent tmux colored-man python)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -85,5 +85,7 @@ fi
 
 
 source $ZSH/oh-my-zsh.sh
+
+zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
