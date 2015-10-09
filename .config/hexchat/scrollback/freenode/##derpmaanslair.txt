@@ -1,0 +1,88 @@
+T 1427222944 19*	Now talking on 22##DerpmaansLair
+T 1427222944 22*	Topic for 22##DerpmaansLair is: Poop or dominos? Can the two coexist? We discuss this and many other fascinating topics below.
+T 1427222944 22*	Topic for 22##DerpmaansLair set by 26dudemcbacon!~brandon.b@70.103.8.101 (24Fri Feb  6 15:41:21 2015)
+T 1427222970 18<dudemcbacon18>	Nope. But I hear a lot of people have pretty good success.
+T 1427222983 18<dudemcbacon18>	And I did the standing desk thing at Nike. That worked alright.
+T 1427223269 20<dudemcbacon3>30	You guys hear FreeNAS 9.3 got released?
+T 1427224698 18<oxiclean18>	oh yeah?
+T 1427224702 18<oxiclean18>	Anything good?
+T 1427225047 20<dudemcbacon3>30	FreeNAS can now act as your domain controller.
+T 1427225088 20<dudemcbacon3>30	That's the biggest thing. Lots of little stuff -- UI tweaks, software updates, bugfixes.
+T 1427225108 18<oxiclean18>	oh that's cool.
+T 1427225119 18<oxiclean18>	Well I'll think about upgrading when I figure out my performance issues.
+T 1427225134 20<dudemcbacon3>30	They added a FreeNAS software updater thing. You open a menu and it tells you if you're on the latest version of FreeNAS and lets you download updates. That's pretty handy.
+T 1427225153 18<oxiclean18>	Oh that's cool!
+T 1427225162 20<dudemcbacon3>30	So what's the dealio? I read some of it but my other IRC client makes it hard to read logs that scroll past the top of the screen.
+T 1427225195 18<oxiclean18>	Basically my file transfer speed is really really shitty
+T 1427225200 18<oxiclean18>	Like 6 mb/s.
+T 1427225214 20<dudemcbacon3>30	huh
+T 1427225215 18<oxiclean18>	It should be somewhere near 60 - 80 mb/s
+T 1427225224 20<dudemcbacon3>30	Are you using a 100Mb nic?
+T 1427225232 18<oxiclean18>	That's what I'm going to figure out tonight
+T 1427225264 18<oxiclean18>	I'm using the onboard nic right now. It's a Core2Duo board apparently so it's possible it's a 10/100 nic.
+T 1427225281 20<dudemcbacon3>30	Ahhh. Is this a new board or something?
+T 1427225283 18<oxiclean18>	I've got another NIC plugged in so I'm going to switch it over to that. I'm just not sure what the speed of it is.
+T 1427225305 18<oxiclean18>	No same board. I think when I moved it out to the garage I plugged in the wrong NIC.
+T 1427225344 20<dudemcbacon3>30	Ahh, gotcha.
+T 1427225374 20<dudemcbacon3>30	I ran into an issue with FreeBSD once where it was recognizing my gigabit NIC but running it in 10/100Mb mode.
+T 1427225384 20<dudemcbacon3>30	You can use something like ethtool to check that.
+T 1427225441 20<dudemcbacon3>30	If you can't figure it out I would try doing some benchmarking on the filesystem using something like hdparam or bonnie++
+T 1427225622 18<oxiclean18>	Yeah that's my next step. I'm going to find out if the NIC is really running at gigabit speeds
+T 1427225629 18<oxiclean18>	Then if it is I'll do some testing.
+T 1427225690 20<dudemcbacon3>30	I was looking 10Gb NICs the other day...
+T 1427225699 20<dudemcbacon3>30	One day I'll have enough money to waste on that.
+T 1427225858 18<oxiclean18>	Or they will be cheap enough to be affordable.
+T 1427227643 18<Jarrand18>	Back to the Spa day. I would totally be down for that
+T 1427227829 18<Jarrand18>	I also haven't installed an IRC client on my mac, I've just been using IRC on my work desktop
+T 1427227856 18<Jarrand18>	I would also love to have a walking desk...
+T 1427230080 20<dudemcbacon3>30	What are you doing tonight, Jarrand?
+T 1427230100 18<Jarrand18>	nothing is planned. What's up?
+T 1427230130 20<dudemcbacon3>30	Can I come touch your stick?
+T 1427230157 18<Jarrand18>	sure
+T 1427230174 20<dudemcbacon3>30	schweeeet! what time works best for you?
+T 1427230178 18<Jarrand18>	7?
+T 1427230185 20<dudemcbacon3>30	Alright, that sounds good.
+T 1427230187 18<oxiclean18>	rofl
+T 1427230193 18<oxiclean18>	That sounds...sexy
+T 1427230199 20<dudemcbacon3>30	you're next, baby
+T 1427230202 18<Jarrand18>	Do you want to come and touch my stick too Tim?
+T 1427230204 18<oxiclean18>	awww yeah
+T 1427230214 18<oxiclean18>	I'm going to be doing man things tonight
+T 1427230226 18<Jarrand18>	like touching other sticks?
+T 1427230254 20<dudemcbacon3>30	i'm so jealous of the sticks you get to touch
+T 1427230254 18<oxiclean18>	Yeah for sure
+T 1427249032 20*	Disconnected (20Network is down)
+T 1427261111 22*	26dudemcbacon3 sets mode 24+i on 22dudemcbacon3
+T 1427261117 19*	Now talking on 22##DerpmaansLair
+T 1427261117 22*	Topic for 22##DerpmaansLair is: Poop or dominos? Can the two coexist? We discuss this and many other fascinating topics below.
+T 1427261117 22*	Topic for 22##DerpmaansLair set by 26dudemcbacon!~brandon.b@70.103.8.101 (24Fri Feb  6 15:41:21 2015)
+T 1427272992 20*	Disconnected (20Connection reset by peer)
+T 1427301063 22*	26dudemcbacon3 sets mode 24+i on 22dudemcbacon3
+T 1427301069 19*	Now talking on 22##DerpmaansLair
+T 1427301069 22*	Topic for 22##DerpmaansLair is: Poop or dominos? Can the two coexist? We discuss this and many other fascinating topics below.
+T 1427301069 22*	Topic for 22##DerpmaansLair set by 26dudemcbacon!~brandon.b@70.103.8.101 (24Fri Feb  6 15:41:21 2015)
+T 1427301080 18<Jarrand18>	Welcome back Brandon
+T 1427302345 18<Jarrand18>	How would I do that?
+T 1427303198 24*	oxiclean has quit (Ping timeout: 252 seconds)
+T 1427303274 19*	Now talking on 22##DerpmaansLair
+T 1427303274 22*	Topic for 22##DerpmaansLair is: Poop or dominos? Can the two coexist? We discuss this and many other fascinating topics below.
+T 1427303274 22*	Topic for 22##DerpmaansLair set by 26dudemcbacon!~brandon.b@70.103.8.101 (24Fri Feb  6 15:41:21 2015)
+T 1427303281 20<dudemcbacon3>30	morning
+T 1427304460 18<Jarrand18>	morning
+T 1427305833 23*	oxiclean (~oxiclean@173-164-79-33-Oregon.hfc.comcastbusiness.net23) has joined
+T 1427305917 18<Jarrand18>	quit dropping Tim!
+T 1427307297 24*	oxiclean has quit (Ping timeout: 265 seconds)
+T 1427307789 18<Jarrand18>	Never kill a mans dog
+T 1427307991 20<dudemcbacon3>30	never kill a man
+T 1427308030 18<Jarrand18>	have you watched John Wick yet?
+T 1427308360 20<dudemcbacon3>30	Nope
+T 1427308365 18<Jarrand18>	dude
+T 1427308386 20<dudemcbacon3>30	It's on the list, man. I've just got so much other stuff on the list too.
+T 1427308395 18<Jarrand18>	yeah... I understand that
+T 1427311404 23*	oxiclean (~oxiclean@173-164-119-109-Oregon.hfc.comcastbusiness.net23) has joined
+T 1427319912 24*	oxiclean has quit (Ping timeout: 265 seconds)
+T 1427324619 20<dudemcbacon3>30	his ping was too damn high
+T 1427327222 18<Jarrand18>	 I'm tired of his god damn ping in this god damn chat!
+T 1427349065 20*	Disconnected (20Network is down)
+T 1427385875 Python interface unloaded
+T 1427385875 FiSHLiM plugin unloaded

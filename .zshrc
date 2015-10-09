@@ -87,3 +87,6 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$HOME/work/bin
+export GOPATH=$HOME/work
