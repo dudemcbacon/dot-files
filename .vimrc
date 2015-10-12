@@ -53,6 +53,12 @@ noremap <Right> <NOP>
 set wildmode=longest,list,full
 set wildmenu
 
+syntax on
+
+" jk is escape
+inoremap jk <esc>
+inoremap <esc> <nop>
+
 " vim-airline options
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
