@@ -18,14 +18,18 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 " My NeoBundles
 NeoBundle 'CmdlineComplete'
 NeoBundle 'Raimondi/delimitMate'
+NeoBundle 'Valloric/YouCompleteMe'
 NeoBundle 'bling/vim-airline'
 NeoBundle 'bronson/vim-trailing-whitespace'
+NeoBundle 'elzr/vim-json'
+NeoBundle 'fatih/vim-go'
 NeoBundle 'godlygeek/tabular'
+NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-sensible'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'puppetlabs/puppet-syntax-vim'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
@@ -45,6 +49,7 @@ set expandtab
 set number
 set mouse=a
 
+" Disable arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
@@ -67,7 +72,6 @@ let g:airline#extensions#tabline#enabled = 1
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
