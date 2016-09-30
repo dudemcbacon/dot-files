@@ -30,6 +30,8 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-sensible'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-ruby/vim-ruby'
+NeoBundle 'puppetlabs/puppet-syntax-vim'
+NeoBundle 'tpope/vim-endwise'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
