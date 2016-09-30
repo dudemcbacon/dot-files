@@ -1,0 +1,7 @@
+# Just click it
+set-option -g mouse-select-pane on
+set-option -g mouse-select-window on
+set-option -g mouse-resize-pane on
+
+# Use the mouse to scrol!
+setw -g mode-mouse on
