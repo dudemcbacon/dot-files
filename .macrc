@@ -37,3 +37,6 @@ function ssh-copy-id() {cat ~/.ssh/id_rsa.pub | ssh $1 "mkdir ~/.ssh; cat >> ~/.
 
 # JAVA HOME for amazon web tools
 export JAVA_HOME=$(/usr/libexec/java_home)
+
+# Love
+alias love="/Applications/love.app/Contents/MacOS/love"
