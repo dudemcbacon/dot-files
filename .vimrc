@@ -32,6 +32,7 @@ NeoBundle 'tpope/vim-surround'
 NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'tpope/vim-endwise'
+NeoBundle 'mtscout6/syntastic-local-eslint.vim'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
@@ -80,3 +81,4 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {'regex': 'possibly useless use of a variable in void context'}
+let g:syntastic_javascript_checkers = ['eslint']

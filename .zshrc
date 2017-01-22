@@ -89,7 +89,8 @@ source $ZSH/oh-my-zsh.sh
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export PATH=$PATH:/usr/local/go/bin
-export GOPATH=$HOME/work
+export GOROOT=/opt/go
+export GOPATH=~/gopath
+export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
