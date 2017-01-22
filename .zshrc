@@ -93,3 +93,4 @@ export PATH=$PATH:/usr/local/go/bin
 export GOPATH=$HOME/work
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/sbin:$PATH"
