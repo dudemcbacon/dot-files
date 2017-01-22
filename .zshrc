@@ -94,3 +94,4 @@ export GOPATH=~/gopath
 export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/sbin:$PATH"

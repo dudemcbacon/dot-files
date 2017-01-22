@@ -4,3 +4,5 @@
 .vim/bundle/tabular
 .nfs00000000000*
 *.swp
+.config/GNS3/
+.config/wireshark/

@@ -27,12 +27,6 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
-pip --version 2>&1 /dev/null
-if [ $? -eq 127 ]; then
-  echo "Install no pip!~"
-  NO_PIP="yes"
-fi
-
 # Install oh-my-zsh
 if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
   echo "Installing oh-my-zsh..."
@@ -40,26 +34,6 @@ if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
   if [ $? -eq 128 ]; then
     echo "Problem installing oh-my-zsh. Do you need to set a proxy?"
     exit 1
-  fi
-fi
-
-# Install powerline
-
-if [ $NO_PIP -eq "yes" ]; then
-  echo "Skipping powerline installation."
-else
-  pip show powerline | grep powerline 2>&1
-  if [ $? -eq 1 ]; then
-    echo "Cloning powerline..."
-    git clone https://github.com/Lokaltog/powerline.git ${DEV_DIR}/powerline
-    cd ${DEV_DIR}/powerline
-    echo "Installing powerline..."
-    python setup.py install --user
-    cd ${DEV_DIR}/dot-files
-    if [ $? -eq 128 ]; then
-      echo "Problem installing powerline. Do you need to set a proxy?"
-      exit 1
-    fi
   fi
 fi
 
