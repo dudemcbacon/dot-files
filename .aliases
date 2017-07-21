@@ -55,3 +55,6 @@ alias pscpu='ps auxf | sort -nr -k 3'
 alias pscpu10='ps auxf | sort -nr -k 3 | head -10'
 alias cpuinfo='lscpu'
 alias cpuinfo2='less /proc/cpuinfo'
+
+# Human-readable sorted du -sh output
+alias duh='function _duh(){ du -hs $1 | sort -h -r};_duh'

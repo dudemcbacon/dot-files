@@ -33,6 +33,7 @@ NeoBundle 'vim-ruby/vim-ruby'
 NeoBundle 'puppetlabs/puppet-syntax-vim'
 NeoBundle 'tpope/vim-endwise'
 NeoBundle 'mtscout6/syntastic-local-eslint.vim'
+NeoBundle 'christoomey/vim-tmux-navigator'
 
 NeoBundleFetch 'Shougo/neobundle.vim'
 call neobundle#end()
@@ -82,3 +83,11 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {'regex': 'possibly useless use of a variable in void context'}
 let g:syntastic_javascript_checkers = ['eslint']
+
+" Easier Split Navigation
+" We can use different key mappings for easy navigation between splits to save
+" a keystroke. So instead of ctrl-w then j, it’s just ctrl-j:
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
