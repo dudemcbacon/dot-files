@@ -1,46 +1,45 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
-if has('vim_starting')
- set nocompatible               " Be iMproved
-
- " Required:
- set runtimepath+=~/.vim/bundle/neobundle.vim/
+"dein Scripts-----------------------------
+if &compatible
+  set nocompatible               " Be iMproved
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/bundle/'))
+set runtimepath+=/Users/brandon/.cache/dein/repos/github.com/Shougo/dein.vim
 
-" Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+if dein#load_state('/Users/brandon/.cache/dein')
+  call dein#begin('/Users/brandon/.cache/dein')
 
-" My NeoBundles
-NeoBundle 'CmdlineComplete'
-NeoBundle 'Raimondi/delimitMate'
-NeoBundle 'Valloric/YouCompleteMe'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'bronson/vim-trailing-whitespace'
-NeoBundle 'elzr/vim-json'
-NeoBundle 'fatih/vim-go'
-NeoBundle 'godlygeek/tabular'
-NeoBundle 'puppetlabs/puppet-syntax-vim'
-NeoBundle 'scrooloose/syntastic'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-sensible'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'vim-ruby/vim-ruby'
-NeoBundle 'puppetlabs/puppet-syntax-vim'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'mtscout6/syntastic-local-eslint.vim'
-NeoBundle 'christoomey/vim-tmux-navigator'
+  " Let dein manage dein
+  " Required:
+  call dein#add('/Users/brandon/.cache/dein/repos/github.com/Shougo/dein.vim')
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
+  call dein#add('Raimondi/delimitMate')
+  call dein#add('bronson/vim-trailing-whitespace')
+  call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('elzr/vim-json')
+  call dein#add('fatih/vim-go')
+  call dein#add('godlygeek/tabular')
+  call dein#add('mtscout6/syntastic-local-eslint.vim')
+  call dein#add('puppetlabs/puppet-syntax-vim')
+  call dein#add('scrooloose/syntastic')
+  call dein#add('tpope/vim-endwise')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('tpope/vim-sensible')
+  call dein#add('tpope/vim-surround')
+  call dein#add('vim-airline/vim-airline')
+  call dein#add('vim-airline/vim-airline-themes')
+  call dein#add('vim-ruby/vim-ruby')
+  call dein#add('vim-scripts/CmdlineComplete')
+
+  call dein#end()
+  call dein#save_state()
+endif
 
 filetype plugin indent on
-
-NeoBundleCheck
 
 set background=dark
 colorscheme solarized
@@ -71,6 +70,7 @@ inoremap <esc> <nop>
 " vim-airline options
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
+let g:airline_solarized_bg='dark'
 
 " Recommended Syntastic Settings
 set statusline+=%#warningmsg#

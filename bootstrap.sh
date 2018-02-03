@@ -27,6 +27,19 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
+# Install powerline-fonts
+if [ ! -e ~/.fonts-installed ]; then
+  echo "Installing powerline-fonts..."
+  git clone https://github.com/powerline/fonts.git ${DEV_DIR}/fonts --depth=1
+  if [ $? -ne 0 ]; then
+    echo "Problem installing powerline-fonts"
+    exit 1
+  fi
+  ${DEV_DIR}/fonts/install.sh
+  rm -rf ${DEV_DIR}/fonts
+  touch ~/.fonts-installed
+fi
+
 # Install oh-my-zsh
 if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
   echo "Installing oh-my-zsh..."
@@ -60,6 +73,11 @@ do
     fi
   fi
 done
+
+# Prep Dein.vim
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
+mkdir -p ~/.cache/dein
+sh ./installer.sh ~/.cache/dein
 
 # Change shell to zsh
 sudo chsh -s /bin/zsh
