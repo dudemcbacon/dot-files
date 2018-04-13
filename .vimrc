@@ -7,15 +7,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/brandon/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/brandon/.cache/dein')
-  call dein#begin('/Users/brandon/.cache/dein')
+if dein#load_state('~/.cache/dein')
+  call dein#begin('~/.cache/dein')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/brandon/.cache/dein/repos/github.com/Shougo/dein.vim')
+  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('Raimondi/delimitMate')
   call dein#add('bronson/vim-trailing-whitespace')
@@ -23,6 +23,7 @@ if dein#load_state('/Users/brandon/.cache/dein')
   call dein#add('elzr/vim-json')
   call dein#add('fatih/vim-go')
   call dein#add('godlygeek/tabular')
+  call dein#add('hashivim/vim-terraform')
   call dein#add('mtscout6/syntastic-local-eslint.vim')
   call dein#add('puppetlabs/puppet-syntax-vim')
   call dein#add('scrooloose/syntastic')
