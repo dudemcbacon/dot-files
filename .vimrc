@@ -77,6 +77,7 @@ let g:airline_solarized_bg='dark'
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:syntastic_go_checkers = ['go', 'gofmt', 'govet']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
@@ -92,3 +93,11 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Fixes extra characters being pasted into VIM on macOS
+" https://stackoverflow.com/questions/44848979/getting-strange-characters-when-pasting-into-my-iterm2-terminal
+set t_BE=
+
+" Some vim-terraform config
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1

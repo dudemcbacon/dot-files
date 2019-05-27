@@ -89,13 +89,13 @@ source $ZSH/oh-my-zsh.sh
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export GOROOT=/opt/go
-export GOPATH=~/gopath
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export PATH="/usr/local/sbin:$PATH"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"
