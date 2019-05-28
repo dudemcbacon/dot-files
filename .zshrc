@@ -69,7 +69,7 @@ ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
-plugins=(ssh-agent tmux colored-man python)
+plugins=(aws ssh-agent tmux colored-man python)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -89,8 +89,12 @@ source $ZSH/oh-my-zsh.sh
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export GOROOT=/opt/go
-export GOPATH=~/gopath
-export PATH=$GOROOT/bin:$GOPATH/bin:$PATH
+export GOPATH=$HOME/golang
+export GOROOT=/usr/local/opt/go/libexec
+export PATH=$PATH:$GOPATH/bin
+export PATH=$PATH:$GOROOT/bin
 
 export PATH="/usr/local/sbin:$PATH"
+
+eval "$(pyenv init -)"
+eval "$(rbenv init -)"

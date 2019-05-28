@@ -11,3 +11,5 @@ alias pull-all='for dir in `ls ./`; do cd $dir; git pull; cd ..; done'
 # r10k alias
 alias r10k-ptk='function _r10k-ptk(){ ssh puppet-mom-ptk "sudo r10k deploy environment ${1}" }'
 alias r10k-slc='function _r10k-slc(){ ssh puppet-mom-slc "sudo r10k deploy environment ${1}" }'
+
+export EYAML_CONFIG="$HOME/.eyaml"
