@@ -83,6 +83,11 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_eruby_ruby_quiet_messages =
     \ {'regex': 'possibly useless use of a variable in void context'}
 let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gometalinter']
+let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+" vim-go
+let g:go_list_type = "quickfix"
+let g:go_fmt_command = "goimports"
 
 " Easier Split Navigation
 " We can use different key mappings for easy navigation between splits to save
@@ -91,3 +96,7 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
+
+" Highlight Non-ASCII spaces:
+highlight nonascii guibg=Red ctermbg=1 term=standout
+au BufReadPost * syntax match nonascii "[^\u0000-\u007F]""
