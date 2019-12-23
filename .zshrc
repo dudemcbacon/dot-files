@@ -4,8 +4,7 @@
 #
 
 # For sudo-ing aliases
-# https://wiki.archlinux.org/index.php/Sudo#Passing_aliases
-alias sudo='sudo '
+# https://wiki.archlinux.org/index.php/Sudo#Passing_aliases alias sudo='sudo '
 
 # Ensure languages are set
 export LANG=en_US.UTF-8
@@ -69,7 +68,7 @@ ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
-plugins=(aws ssh-agent tmux colored-man python)
+plugins=(aws python)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -95,6 +94,11 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
 export PATH="/usr/local/sbin:$PATH"
+source ~/.gvm/scripts/gvm
 
 eval "$(pyenv init -)"
+
+export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
+
+export SIGNUM_API_TOKEN=4221928c30c32122935ad8618b429686
