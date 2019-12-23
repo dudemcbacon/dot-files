@@ -81,3 +81,5 @@ sh ./installer.sh ~/.cache/dein
 
 # Change shell to zsh
 sudo chsh -s /bin/zsh
+
+echo "Don't forget ':call dein#install()' and a powerline font.'"

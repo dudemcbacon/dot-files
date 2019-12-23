@@ -20,12 +20,15 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Raimondi/delimitMate')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('elzr/vim-json')
   call dein#add('fatih/vim-go')
   call dein#add('godlygeek/tabular')
   call dein#add('hashivim/vim-terraform')
   call dein#add('mtscout6/syntastic-local-eslint.vim')
   call dein#add('puppetlabs/puppet-syntax-vim')
+  call dein#add('scrooloose/nerdcommenter')
+  call dein#add('scrooloose/nerdtree')
   call dein#add('scrooloose/syntastic')
   call dein#add('tpope/vim-endwise')
   call dein#add('tpope/vim-fugitive')
@@ -53,6 +56,11 @@ set expandtab
 set number
 set mouse=a
 
+" Increase default buffer size for copy and pasting
+" Less than 1000 lines, less than 1000kb
+" https://stackoverflow.com/questions/17812111/default-buffer-size-to-copy-paste-in-vim
+ set viminfo='20,<1000,s1000
+
 " Disable arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
@@ -63,6 +71,14 @@ set wildmode=longest,list,full
 set wildmenu
 
 syntax on
+
+" highlight tabs
+"":set list
+":set listchars=tab:>-     " > is shown at the beginning, - throughout"
+
+" 80 Column Limit
+set colorcolumn=80
+set textwidth=80
 
 " jk is escape
 inoremap jk <esc>
