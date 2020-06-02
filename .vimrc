@@ -18,6 +18,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
   call dein#add('Raimondi/delimitMate')
+  call dein#add('Shougo/deoplete.nvim')
   call dein#add('bronson/vim-trailing-whitespace')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('ctrlpvim/ctrlp.vim')
@@ -39,9 +40,16 @@ if dein#load_state('~/.cache/dein')
   call dein#add('vim-ruby/vim-ruby')
   call dein#add('vim-scripts/CmdlineComplete')
 
+  if !has('nvim')
+    call dein#add('roxma/nvim-yarp')
+    call dein#add('roxma/vim-hug-neovim-rpc')
+  endif
+
   call dein#end()
   call dein#save_state()
 endif
+
+let g:deoplete#enable_at_startup = 1
 
 filetype plugin indent on
 
@@ -65,7 +73,7 @@ set mouse=a
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
-noremap <Right> <NOP>
+  noremap <Right> <NOP>
 
 set wildmode=longest,list,full
 set wildmenu
@@ -126,3 +134,20 @@ set t_BE=
 " Some vim-terraform config
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
+
+" Automatic Paste Mode
+" https://stackoverflow.com/a/38258720/62202
+let &t_SI .= "\<Esc>[?2004h"
+let &t_EI .= "\<Esc>[?2004l"
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+" Highlight tabs as errors.
+" https://vi.stackexchange.com/a/9353/3168
+match Error /\t/
