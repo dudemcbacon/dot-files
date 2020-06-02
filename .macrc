@@ -41,10 +41,5 @@ alias love="/Applications/love.app/Contents/MacOS/love"
 # Fix ls alias
 alias ls='ls -lha -G'
 
-# NVM Stuff
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # ncdu > du
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"

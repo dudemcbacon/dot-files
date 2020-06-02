@@ -23,3 +23,7 @@
   diff = auto
 [merge]
   tool = vimdiff
+[url "https://:@privategitlab.com"]
+	insteadOf = https://privategitlab.com
+[url "https://bburnett:3c866449306d00996867a98c7733d0fa2f45ac0c@source.datanerd.us"]
+	insteadOf = https://source.datanerd.us

@@ -68,7 +68,7 @@ ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
-plugins=(aws python)
+plugins=()
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -82,23 +82,15 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
 
-
 source $ZSH/oh-my-zsh.sh
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
-export GOPATH=$HOME/golang
-export GOROOT=/usr/local/opt/go/libexec
-export PATH=$PATH:$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin
+source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
+source $(brew --prefix asdf)/asdf.sh
+
+source ~/.newrelic
+export PATH="/usr/local/opt/icu4c/bin:$PATH"
+export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-source ~/.gvm/scripts/gvm
-
-eval "$(pyenv init -)"
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
-export SIGNUM_API_TOKEN=4221928c30c32122935ad8618b429686
