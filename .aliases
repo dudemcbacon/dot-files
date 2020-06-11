@@ -1,9 +1,9 @@
 #
 # Here be all my aliases. Much of this is shamelessly ripped off of https://github.com/mathiasbynens/dotfiles
-# 
+#
 
 # Command Substitution
-alias vi="vim"
+alias vi="nvim"
 
 # Easier navigation: .., ..., ...., ....., and -
 alias ..="cd .."

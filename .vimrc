@@ -17,6 +17,7 @@ if dein#load_state('~/.cache/dein')
   " Required:
   call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
 
+  call dein#add('tpope/vim-vinegar')
   call dein#add('Raimondi/delimitMate')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('bronson/vim-trailing-whitespace')
