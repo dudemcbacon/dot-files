@@ -27,6 +27,12 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
+nvim -v 2>&1 /dev/null
+if [ $? -eq 127 ]; then
+  echo "Install nvim!~"
+  exit 1
+fi
+
 # Install powerline-fonts
 if [ ! -e ~/.fonts-installed ]; then
   echo "Installing powerline-fonts..."
@@ -74,12 +80,12 @@ do
   fi
 done
 
-# Prep Dein.vim
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > installer.sh
-mkdir -p ~/.cache/dein
-sh ./installer.sh ~/.cache/dein
+# Prep Vundle
+mkdir -p ~/.vim/bundle
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+nvim +PluginInstall +qall
 
 # Change shell to zsh
 sudo chsh -s /bin/zsh
 
-echo "Don't forget ':call dein#install()' and a powerline font.'"
+echo "Don't forget add a powerline font.'"
