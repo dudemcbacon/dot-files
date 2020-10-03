@@ -15,7 +15,7 @@ source ~/.nwearc
 
 # Misc. config variables
 export TERM="xterm-256color"
-export EDITOR="vim"
+export EDITOR="nvim"
 export HISTFILESIZE=32768
 export HISTSIZE=32768
 export CLICOLOR=1
@@ -90,7 +90,7 @@ source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 source $(brew --prefix asdf)/asdf.sh
 
-source ~/.newrelic
+source ~/.newrelic_rc
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"

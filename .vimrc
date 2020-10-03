@@ -1,58 +1,52 @@
 " Note: Skip initialization for vim-tiny or vim-small.
 if !1 | finish | endif
 
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Plugin 'Raimondi/delimitMate'
+Plugin 'Shougo/deoplete.nvim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'bronson/vim-trailing-whitespace'
+Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'elzr/vim-json'
+Plugin 'fatih/vim-go'
+Plugin 'godlygeek/tabular'
+Plugin 'hashivim/vim-terraform'
+Plugin 'mtscout6/syntastic-local-eslint.vim'
+Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-vinegar'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'vim-scripts/CmdlineComplete'
+
+if !has('nvim')
+  Plugin 'roxma/nvim-yarp')
+  Plugin 'roxma/vim-hug-neovim-rpc')
 endif
 
-" Required:
-set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
-
-" Required:
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-
-  call dein#add('tpope/vim-vinegar')
-  call dein#add('Raimondi/delimitMate')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('bronson/vim-trailing-whitespace')
-  call dein#add('christoomey/vim-tmux-navigator')
-  call dein#add('ctrlpvim/ctrlp.vim')
-  call dein#add('elzr/vim-json')
-  call dein#add('fatih/vim-go')
-  call dein#add('godlygeek/tabular')
-  call dein#add('hashivim/vim-terraform')
-  call dein#add('mtscout6/syntastic-local-eslint.vim')
-  call dein#add('puppetlabs/puppet-syntax-vim')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('scrooloose/syntastic')
-  call dein#add('tpope/vim-endwise')
-  call dein#add('tpope/vim-fugitive')
-  call dein#add('tpope/vim-sensible')
-  call dein#add('tpope/vim-surround')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-  call dein#add('vim-ruby/vim-ruby')
-  call dein#add('vim-scripts/CmdlineComplete')
-
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-
-  call dein#end()
-  call dein#save_state()
-endif
+call vundle#end()            " required
+filetype plugin indent on    " required
 
 let g:deoplete#enable_at_startup = 1
-
-filetype plugin indent on
 
 set background=dark
 colorscheme solarized
@@ -152,3 +146,7 @@ endfunction
 " Highlight tabs as errors.
 " https://vi.stackexchange.com/a/9353/3168
 match Error /\t/
+
+" deoplete
+let g:python2_host_prog = '/Users/bburnett/development/py2nvim/bin/python'
+let g:python3_host_prog = '/Users/bburnett/development/py3nvim/bin/python'
