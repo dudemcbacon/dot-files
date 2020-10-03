@@ -43,3 +43,6 @@ alias ls='ls -lha -G'
 
 # ncdu > du
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+
+# find listening ports
+alias listen="netstat -an -ptcp | grep LISTEN"
