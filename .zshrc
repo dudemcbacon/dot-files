@@ -89,8 +89,11 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 source $(brew --prefix asdf)/asdf.sh
+. ~/.asdf/plugins/java/set-java-home.zsh
 
 source ~/.newrelic_rc
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
+
+eval "$(direnv hook zsh)"

@@ -4,57 +4,66 @@ if !1 | finish | endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+function! Cond(Cond, ...)
+  let opts = get(a:000, 0, {})
+  return a:Cond ? opts : extend(opts, { 'on': [], 'for': [] })
+endfunction
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+" Specify a directory for plugins
+" - For Neovim: stdpath('data') . '/plugged'
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
 
-Plugin 'Raimondi/delimitMate'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'elzr/vim-json'
-Plugin 'fatih/vim-go'
-Plugin 'godlygeek/tabular'
-Plugin 'hashivim/vim-terraform'
-Plugin 'mtscout6/syntastic-local-eslint.vim'
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-bundler'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-vinegar'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'vim-scripts/CmdlineComplete'
+Plug 'Raimondi/delimitMate'
+Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'christoomey/vim-tmux-navigator', Cond(!exists('g:vscode'))
+Plug 'ctrlpvim/ctrlp.vim', Cond(!exists('g:vscode'))
+Plug 'elzr/vim-json'
+Plug 'fatih/vim-go'
+Plug 'godlygeek/tabular'
+Plug 'hashivim/vim-terraform', Cond(!exists('g:vscode'))
+Plug 'mtscout6/syntastic-local-eslint.vim', Cond(!exists('g:vscode'))
+Plug 'puppetlabs/puppet-syntax-vim', Cond(!exists('g:vscode'))
+Plug 'scrooloose/nerdcommenter', Cond(!exists('g:vscode'))
+Plug 'scrooloose/nerdtree', Cond(!exists('g:vscode'))
+Plug 'scrooloose/syntastic'
+Plug 'tpope/vim-bundler', Cond(!exists('g:vscode'))
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
+Plug 'tpope/vim-rails', Cond(!exists('g:vscode'))
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-vinegar', Cond(!exists('g:vscode'))
+Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
+Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode'))
+Plug 'vim-ruby/vim-ruby', Cond(!exists('g:vscode'))
+Plug 'vim-scripts/CmdlineComplete', Cond(!exists('g:vscode'))
 
-if !has('nvim')
-  Plugin 'roxma/nvim-yarp')
-  Plugin 'roxma/vim-hug-neovim-rpc')
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
-
-call vundle#end()            " required
-filetype plugin indent on    " required
-
 let g:deoplete#enable_at_startup = 1
+
+" Initialize plugin system
+call plug#end()
+
 
 set background=dark
 colorscheme solarized
 
+" Default indentation
 set autoindent
 set tabstop=2
 set shiftwidth=2
 set expandtab
+
+" Indentation for java
+autocmd FileType java setlocal shiftwidth=4 softtabstop=4 expandtab
 
 set number
 set mouse=a
@@ -65,10 +74,12 @@ set mouse=a
  set viminfo='20,<1000,s1000
 
 " Disable arrow keys
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
+if !exists('g:vscode')
+  noremap <Up> <NOP>
+  noremap <Down> <NOP>
+  noremap <Left> <NOP>
   noremap <Right> <NOP>
+endif
 
 set wildmode=longest,list,full
 set wildmenu
@@ -84,8 +95,10 @@ set colorcolumn=80
 set textwidth=80
 
 " jk is escape
-inoremap jk <esc>
-inoremap <esc> <nop>
+if !exists('g:vscode')
+  inoremap jk <esc>
+  inoremap <esc> <nop>
+endif
 
 " vim-airline options
 let g:airline_powerline_fonts = 1
@@ -106,6 +119,8 @@ let g:syntastic_eruby_ruby_quiet_messages =
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gometalinter']
 let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+let g:syntastic_java_checkers=['javac']
+let g:syntastic_java_javac_config_file_enabled = 1
 " vim-go
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
