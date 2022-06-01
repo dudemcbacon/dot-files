@@ -68,11 +68,11 @@ ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
-plugins=()
+plugins=(asdf docker tmux)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
-  plugins+=(osx brew)
+  plugins+=(macos brew iterm2)
 elif [[ $CURRENT_OS == 'Linux' ]]; then
   plugins+=()
   if [[ $DISTRO == 'CentOS' ]]; then
@@ -88,7 +88,6 @@ zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
-source $(brew --prefix asdf)/asdf.sh
 . ~/.asdf/plugins/java/set-java-home.zsh
 
 source ~/.newrelic_rc
@@ -97,3 +96,4 @@ export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 eval "$(direnv hook zsh)"
+eval "$(starship init zsh)"
