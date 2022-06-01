@@ -165,6 +165,12 @@ endfunction
 " https://vi.stackexchange.com/a/9353/3168
 match Error /\t/
 
-" deoplete
-let g:python2_host_prog = '/Users/bburnett/development/py2nvim/bin/python'
-let g:python3_host_prog = '/Users/bburnett/development/py3nvim/bin/python'
+if has("unix")
+  let s:uname = system("uname")
+  if s:uname == "Darwin\n"
+    " Do Mac stuff here
+    " deoplete python 
+    let g:python2_host_prog = '/Users/bburnett/development/py2nvim/bin/python'
+    let g:python3_host_prog = '/Users/bburnett/development/py3nvim/bin/python'
+  endif
+endif
