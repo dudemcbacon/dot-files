@@ -65,7 +65,6 @@ fi
 # oh-my-zsh config
 ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
-ZSH_THEME="my-robbyrussell"
 
 # Universal plugins
 plugins=(asdf docker tmux)
@@ -86,11 +85,14 @@ source $ZSH/oh-my-zsh.sh
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
-source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
+if [ -e ~/.asdf/plugins/java/set-java-home.zsh ]; then
+  . ~/.asdf/plugins/java/set-java-home.zsh
+fi
 
-. ~/.asdf/plugins/java/set-java-home.zsh
+if [ -e ~/.newrelic_rc ]; then
+  source ~/.newrelic_rc
+fi
 
-source ~/.newrelic_rc
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"

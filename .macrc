@@ -51,4 +51,3 @@ source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
 
 source $(brew --prefix asdf)/asdf.sh
 . ~/.asdf/plugins/java/set-java-home.zsh
-
