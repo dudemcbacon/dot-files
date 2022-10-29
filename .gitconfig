@@ -19,6 +19,7 @@
   undo-commit = reset --soft HEAD~1
 [push]
   default = simple
+  autoSetupRemote = true
 [color]
   diff = auto
 [merge]

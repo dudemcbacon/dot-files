@@ -19,15 +19,15 @@ Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'christoomey/vim-tmux-navigator', Cond(!exists('g:vscode'))
 Plug 'ctrlpvim/ctrlp.vim', Cond(!exists('g:vscode'))
+Plug 'dense-analysis/ale'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform', Cond(!exists('g:vscode'))
-Plug 'mtscout6/syntastic-local-eslint.vim', Cond(!exists('g:vscode'))
+"Plug 'mtscout6/syntastic-local-eslint.vim', Cond(!exists('g:vscode'))
 Plug 'puppetlabs/puppet-syntax-vim', Cond(!exists('g:vscode'))
 Plug 'scrooloose/nerdcommenter', Cond(!exists('g:vscode'))
-Plug 'scrooloose/nerdtree', Cond(!exists('g:vscode'))
-Plug 'scrooloose/syntastic'
+"Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-bundler', Cond(!exists('g:vscode'))
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
@@ -39,11 +39,17 @@ Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
 Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode'))
 Plug 'vim-ruby/vim-ruby', Cond(!exists('g:vscode'))
 Plug 'vim-scripts/CmdlineComplete', Cond(!exists('g:vscode'))
+Plug 'ggandor/leap.nvim'
+Plug 'preservim/tagbar'
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'flazz/vim-colorschemes'
+Plug 'dstein64/vim-startuptime'
 
 if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
-  Plug 'Shougo/deoplete.nvim'
+  "Plug 'Shougo/deoplete.nvim'
   Plug 'roxma/nvim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
@@ -52,9 +58,15 @@ let g:deoplete#enable_at_startup = 1
 " Initialize plugin system
 call plug#end()
 
+" ale
+let g:ale_open_list=1
 
+" Set TagBar to toggle with F8
+nmap <F8> :TagbarToggle<CR>
+
+" Set them
 set background=dark
-colorscheme solarized
+colorscheme solarized8_dark
 
 " Default indentation
 set autoindent
@@ -104,6 +116,19 @@ endif
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_solarized_bg='dark'
+
+" gutentags
+let g:gutentags_cache_dir='~/.gutentags'
+set statusline+=%{gutentags#statusline()}
+let g:gutentags_ctags_exclude = [
+\ '.git/*',
+\ '.husky/*',
+\ '.vscode/*',
+\ 'node_modules',
+\ 'spec/*',
+\ 'temp/*',
+\ 'test/*',
+\]
 
 " Recommended Syntastic Settings
 set statusline+=%#warningmsg#
@@ -165,12 +190,14 @@ endfunction
 " https://vi.stackexchange.com/a/9353/3168
 match Error /\t/
 
+" deoplete
+let g:loaded_perl_provider = 0
 if has("unix")
   let s:uname = system("uname")
   if s:uname == "Darwin\n"
     " Do Mac stuff here
-    " deoplete python 
-    let g:python2_host_prog = '/Users/bburnett/development/py2nvim/bin/python'
-    let g:python3_host_prog = '/Users/bburnett/development/py3nvim/bin/python'
+    " deoplete python
+    "let g:python2_host_prog = '/Users/bburnett/development/py2nvim/bin/python'
+    "let g:python3_host_prog = '/Users/bburnett/development/py3nvim/bin/python'
   endif
 endif

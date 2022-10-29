@@ -1,3 +1,7 @@
+---
+AllCops:
+    NewCops: enable
+
 Metrics/BlockLength:
   Max: 120
 Metrics/LineLength:

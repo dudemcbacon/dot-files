@@ -52,6 +52,16 @@ if [ ! -e ~/.fonts-installed ]; then
   touch ~/.fonts-installed
 fi
 
+# Install tpm
+if [ ! -e ${DEV_DIR}/.tmux/plugins/tpm ]; then
+  echo "Installing tpm..."
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  if [ $? -eq 128 ]; then
+    echo "Problem installing tpm."
+    exit 1
+  fi
+fi
+
 # Install oh-my-zsh
 if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
   echo "Installing oh-my-zsh..."
