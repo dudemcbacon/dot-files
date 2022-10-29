@@ -47,7 +47,5 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 # find listening ports
 alias listen="netstat -an -ptcp | grep LISTEN"
 
-source /Users/bburnett/Library/Preferences/org.dystroy.broot/launcher/bash/br
-
 source $(brew --prefix asdf)/asdf.sh
-. ~/.asdf/plugins/java/set-java-home.zsh
+alias ctags="`brew --prefix`/bin/ctags"

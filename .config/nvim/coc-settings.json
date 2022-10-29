@@ -1,0 +1,7 @@
+{
+  "suggest.floatConfig": {
+    "border": true,
+    "rounded": true,
+    "highlight": "Normal"
+  }
+}
