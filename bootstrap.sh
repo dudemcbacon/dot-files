@@ -7,6 +7,8 @@
 # 2. Install oh-my-zsh from GitHub
 # 3. Link appropriate dot-files
 #
+set -e
+
 DEV_DIR="${HOME}/development"
 
 zsh --version 2>&1 /dev/null
@@ -33,14 +35,14 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
-direnv -v 2>&1 /dev/null
+direnv version
 if [ $? -eq 127 ]; then
   echo "Install direnv!~"
   exit 1
 fi
 
 # Install powerline-fonts
-if [ ! -e ~/.fonts-installed ]; then
+if [ ! -e ${HOME}/.fonts-installed ]; then
   echo "Installing powerline-fonts..."
   git clone https://github.com/powerline/fonts.git ${DEV_DIR}/fonts --depth=1
   if [ $? -ne 0 ]; then
@@ -53,7 +55,7 @@ if [ ! -e ~/.fonts-installed ]; then
 fi
 
 # Install tpm
-if [ ! -e ${DEV_DIR}/.tmux/plugins/tpm ]; then
+if [ ! -e ${HOME}/.tmux/plugins/tpm ]; then
   echo "Installing tpm..."
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
   if [ $? -eq 128 ]; then
@@ -73,23 +75,40 @@ if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
 fi
 
 # Install asdf
-if [ ! -e ${DEV_DIR}/.asdf ]; then
+if [ ! -e ${HOME}/.asdf ]; then
   echo "Installing asdf..."
   git clone https://github.com/asdf-vm/asdf.git ~/.asdf
   if [ $? -eq 128 ]; then
-    echo "Problem installing oh-my-zsh. Do you need to set a proxy?"
+    echo "Problem installing asdf"
     exit 1
   fi
 fi
 
 # Prep vim-plug
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+if [ ! -e ${HOME}/.local/share/nvim/site/autoload/plug.vim ]; then
+  echo 'Installing vim-plug...'
+  sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+         https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  if [ $? -eq 128 ]; then
+    echo "Problem installing vim-plug"
+  fi
+fi
 
 # Prep starship
-curl -sS https://starship.rs/install.sh | sh
+if [ ! -e /usr/local/bin/starship ]; then
+  echo 'Installing starship...'
+  curl -sS https://starship.rs/install.sh | sh
+  if [ $? -eq 128 ]; then
+    echo "Problem installing starship"
+    exit 1
+  fi
+fi
 
 # Change shell to zsh
 sudo chsh -s /bin/zsh
 
 echo "Don't forget add a powerline font.'"
+echo "Don't forget to run :PlugInstall in vim"
+echo "Don't forget to run :PlugUpdate in vim"
+echo "Don't forget to run :PlugClean in vim"
+echo "Don't forget to run :CocInstall coc-json coc-tsserver in vim"
