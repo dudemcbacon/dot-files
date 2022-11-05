@@ -60,6 +60,12 @@ call plug#end()
 
 " ale
 let g:ale_open_list=1
+" close loclist when buffer is closed
+" https://github.com/dense-analysis/ale/blob/483d056528543df3349299db1ecf4aecfd0d7f44/doc/ale.txt#L1873
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
 
 " Set TagBar to toggle with F8
 nmap <F8> :TagbarToggle<CR>
