@@ -131,24 +131,24 @@ let g:gutentags_ctags_exclude = [
 \]
 
 " Recommended Syntastic Settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 " Check debug messages with :mes
 "let g:syntastic_debug = 33
-let g:syntastic_go_checkers = ['go', 'gofmt', 'govet']
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_eruby_ruby_quiet_messages =
-    \ {'regex': 'possibly useless use of a variable in void context'}
-let g:syntastic_javascript_checkers = ['eslint']
+"let g:syntastic_go_checkers = ['go', 'gofmt', 'govet']
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
+"let g:syntastic_eruby_ruby_quiet_messages =
+""    \ {'regex': 'possibly useless use of a variable in void context'}
+"let g:syntastic_javascript_checkers = ['eslint']
 
-let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gometalinter']
-let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
-let g:syntastic_java_checkers=['javac']
-let g:syntastic_java_javac_config_file_enabled = 1
+"let g:syntastic_go_checkers = ['go', 'golint', 'govet', 'gometalinter']
+"let g:syntastic_go_gometalinter_args = ['--disable-all', '--enable=errcheck']
+"let g:syntastic_java_checkers=['javac']
+"let g:syntastic_java_javac_config_file_enabled = 1
 " vim-go
 let g:go_list_type = "quickfix"
 let g:go_fmt_command = "goimports"
