@@ -41,6 +41,12 @@ if [ $? -eq 127 ]; then
   exit 1
 fi
 
+ctags --version
+if [ $? -eq 127 ]; then
+  echo "Install universal-ctags!~"
+  exit 1
+fi
+
 # Install powerline-fonts
 if [ ! -e ${HOME}/.fonts-installed ]; then
   echo "Installing powerline-fonts..."
@@ -111,4 +117,5 @@ echo "Don't forget add a powerline font.'"
 echo "Don't forget to run :PlugInstall in vim"
 echo "Don't forget to run :PlugUpdate in vim"
 echo "Don't forget to run :PlugClean in vim"
+echo "Don't forget to run :GoInstallBinaries in vim"
 echo "Don't forget to run :CocInstall coc-json coc-tsserver in vim"
