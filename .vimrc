@@ -59,6 +59,7 @@ let g:deoplete#enable_at_startup = 1
 call plug#end()
 
 " ale
+let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_open_list=1
 " close loclist when buffer is closed
 " https://github.com/dense-analysis/ale/blob/483d056528543df3349299db1ecf4aecfd0d7f44/doc/ale.txt#L1873
