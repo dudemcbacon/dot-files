@@ -14,20 +14,27 @@ endfunction
 " - Avoid using standard Vim directory names like 'plugin'
 call plug#begin('~/.vim/plugged')
 
+"Plug 'mtscout6/syntastic-local-eslint.vim', Cond(!exists('g:vscode'))
+"Plug 'scrooloose/syntastic'
+Plug 'Exafunction/codeium.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'christoomey/vim-tmux-navigator', Cond(!exists('g:vscode'))
 Plug 'ctrlpvim/ctrlp.vim', Cond(!exists('g:vscode'))
 Plug 'dense-analysis/ale'
+Plug 'dstein64/vim-startuptime'
 Plug 'elzr/vim-json'
 Plug 'fatih/vim-go'
+Plug 'flazz/vim-colorschemes'
+Plug 'ggandor/leap.nvim'
 Plug 'godlygeek/tabular'
 Plug 'hashivim/vim-terraform', Cond(!exists('g:vscode'))
-"Plug 'mtscout6/syntastic-local-eslint.vim', Cond(!exists('g:vscode'))
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'preservim/tagbar'
 Plug 'puppetlabs/puppet-syntax-vim', Cond(!exists('g:vscode'))
 Plug 'scrooloose/nerdcommenter', Cond(!exists('g:vscode'))
-"Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-bundler', Cond(!exists('g:vscode'))
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
@@ -39,12 +46,6 @@ Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
 Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode'))
 Plug 'vim-ruby/vim-ruby', Cond(!exists('g:vscode'))
 Plug 'vim-scripts/CmdlineComplete', Cond(!exists('g:vscode'))
-Plug 'ggandor/leap.nvim'
-Plug 'preservim/tagbar'
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'flazz/vim-colorschemes'
-Plug 'dstein64/vim-startuptime'
 
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
