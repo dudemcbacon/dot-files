@@ -31,7 +31,7 @@ elif [ "$system_type" = "Linux" ]; then
     sudo apt-get update
 
     sudo apt-get install -y zsh tmux git universal-ctags direnv \
-      software-properties-common
+      software-properties-common curl
 
     # Ubuntu has a really old version of Nvim so install it from upstream
     sudo add-apt-repository -y ppa:neovim-ppa/unstable
