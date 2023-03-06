@@ -47,5 +47,4 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 # find listening ports
 alias listen="netstat -an -ptcp | grep LISTEN"
 
-source $(brew --prefix asdf)/asdf.sh
 alias ctags="`brew --prefix`/bin/ctags"
