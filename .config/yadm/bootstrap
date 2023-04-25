@@ -27,7 +27,16 @@ if [ "$system_type" = "Darwin" ]; then
 elif [ "$system_type" = "Linux" ]; then
   distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
 
-  if [ $distro = \"Ubuntu\" ]; then
+  if [ "$distro" = \"Debian\ GNU/Linux\" ]; then
+    sudo apt-get update
+
+    sudo apt-get install -y zsh tmux git universal-ctags direnv \
+      software-properties-common curl
+
+    sudo apt-get -yq install build-essential gdb lcov libbz2-dev libffi-dev \
+      libgdbm-dev liblzma-dev libncurses5-dev libreadline6-dev libsqlite3-dev \
+      libssl-dev lzma lzma-dev tk-dev uuid-dev xvfb zlib1g-dev
+  elif [ "$distro" = \"Ubuntu\" ]; then
     sudo apt-get update
 
     sudo apt-get install -y zsh tmux git universal-ctags direnv \
