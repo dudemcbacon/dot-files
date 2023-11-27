@@ -73,6 +73,8 @@ augroup END
 nmap <F8> :TagbarToggle<CR>
 
 " Set them
+syntax enable
+set termguicolors
 set background=dark
 colorscheme solarized8_dark
 
