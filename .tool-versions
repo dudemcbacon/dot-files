@@ -2,4 +2,4 @@ ruby 3.1.1
 java corretto-11.0.19.7.1
 golang 1.18.3
 nodejs 19.8.1
-python 3.10.5
+python 3.10.9
