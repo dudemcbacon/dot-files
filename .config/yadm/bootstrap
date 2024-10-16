@@ -22,7 +22,9 @@ if [ "$system_type" = "Darwin" ]; then
 
   if [ -f "$HOME/.Brewfile" ]; then
     echo "Updating homebrew bundle"
+    set +e
     brew bundle --global
+    set -e
   fi
 elif [ "$system_type" = "Linux" ]; then
   distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
@@ -136,7 +138,11 @@ if [ ! -e ${HOME}/.asdf ]; then
     exit 1
   fi
 fi
-source ~/.asdf/asdf.sh
+if [ "$system_type" = "Darwin" ]; then
+  source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+else
+  source ~/.asdf/asdf.sh
+fi
 set +e
 asdf plugin add ruby
 asdf plugin add java
