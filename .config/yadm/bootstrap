@@ -22,7 +22,9 @@ if [ "$system_type" = "Darwin" ]; then
 
   if [ -f "$HOME/.Brewfile" ]; then
     echo "Updating homebrew bundle"
+    set +e
     brew bundle --global
+    set -e
   fi
 elif [ "$system_type" = "Linux" ]; then
   distro=$(awk -F= '/^NAME/{print $2}' /etc/os-release)
@@ -36,6 +38,15 @@ elif [ "$system_type" = "Linux" ]; then
     sudo apt-get -yq install build-essential gdb lcov libbz2-dev libffi-dev \
       libgdbm-dev liblzma-dev libncurses5-dev libreadline6-dev libsqlite3-dev \
       libssl-dev lzma lzma-dev tk-dev uuid-dev xvfb zlib1g-dev
+  elif [ "$distro" = \"Fedora\ Linux\" ]; then
+      sudo dnf install git zsh tmux ctags direnv curl wget
+      sudo dnf groupinstall "Development Tools" -y
+
+      # Python build deps
+      sudo dnf install zlib-devel bzip2 bzip2-devel readline-devel sqlite sqlite-devel openssl-devel xz xz-devel libffi-devel findutils -y
+
+      # Ruby build deps
+      sudo dnf install -y git-core gcc rust patch make bzip2 openssl-devel libyaml-devel libffi-devel readline-devel zlib-devel gdbm-devel ncurses-devel perl-FindBin perl-lib perl-File-Compare
   elif [ "$distro" = \"Ubuntu\" ]; then
     sudo apt-get update
 
@@ -49,7 +60,7 @@ elif [ "$system_type" = "Linux" ]; then
     # Needed to build python
     sudo apt-get install -y build-essential checkinstall libreadline-dev \
     libncursesw5-dev libssl-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev \
-        libbz2-dev libffi-dev liblzma-dev
+        libbz2-dev libffi-dev liblzma-dev libyaml-dev
 
     # WSL needs this or it will complain about locales endlessly
     sudo apt install locales
@@ -58,41 +69,54 @@ elif [ "$system_type" = "Linux" ]; then
   fi
 fi
 
+set +e
 zsh --version 2>&1 /dev/null
+set -e
 if [ $? -eq 127 ]; then
   echo "Install ZSH!~"
   exit 1
 fi
 
+set +e
 git --version 2>&1 /dev/null
+set -e
 if [ $? -eq 127 ]; then
   echo "Install Git!~"
   exit 1
 fi
 
+set +e
 tmux -V 2>&1 /dev/null
+set -e
 if [ $? -eq 127 ]; then
   echo "Install Tmux!~"
   exit 1
 fi
 
+set +e
 nvim -v 2>&1 /dev/null
+set -e
 if [ $? -eq 127 ]; then
   echo "Install nvim!~"
   exit 1
 fi
 
-direnv version
+set +e
+direnv --version 2>&1 /dev/null
+set -e
 if [ $? -eq 127 ]; then
   echo "Install direnv!~"
   exit 1
 fi
 
-ctags --version
+set +e
+ctags --version 2>&1 /dev/null
+set -e
 if [ $? -eq 127 ]; then
   echo "Install universal-ctags!~"
   exit 1
 fi
+set -e
 
 # Install powerline-fonts
 if [ ! -e ${HOME}/.fonts-installed ]; then
@@ -136,7 +160,11 @@ if [ ! -e ${HOME}/.asdf ]; then
     exit 1
   fi
 fi
-source ~/.asdf/asdf.sh
+if [ "$system_type" = "Darwin" ]; then
+  source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
+else
+  source ~/.asdf/asdf.sh
+fi
 set +e
 asdf plugin add ruby
 asdf plugin add java
@@ -172,4 +200,4 @@ if [ ! -e /usr/local/bin/starship ]; then
 fi
 
 # Change shell to zsh
-sudo chsh -s /bin/zsh
+chsh -s /bin/zsh

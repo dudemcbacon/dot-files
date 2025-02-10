@@ -4,60 +4,79 @@ if !1 | finish | endif
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-function! Cond(Cond, ...)
-  let opts = get(a:000, 0, {})
-  return a:Cond ? opts : extend(opts, { 'on': [], 'for': [] })
-endfunction
-
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
-call plug#begin('~/.vim/plugged')
+if exists('g:vscode')
+  call plug#begin('~/.vim-vscode/plugged')
+else
+  call plug#begin('~/.vim/plugged')
+endif
 
 "Plug 'mtscout6/syntastic-local-eslint.vim', Cond(!exists('g:vscode'))
 "Plug 'scrooloose/syntastic'
-Plug 'Exafunction/codeium.vim'
-Plug 'Raimondi/delimitMate'
-Plug 'airblade/vim-gitgutter', Cond(!exists('g:vscode'))
-Plug 'bronson/vim-trailing-whitespace'
-Plug 'christoomey/vim-tmux-navigator', Cond(!exists('g:vscode'))
-Plug 'ctrlpvim/ctrlp.vim', Cond(!exists('g:vscode'))
-Plug 'dense-analysis/ale'
-Plug 'dstein64/vim-startuptime'
-Plug 'elzr/vim-json'
-Plug 'fatih/vim-go'
-Plug 'flazz/vim-colorschemes'
-Plug 'ggandor/leap.nvim'
-Plug 'godlygeek/tabular'
-Plug 'hashivim/vim-terraform', Cond(!exists('g:vscode'))
-Plug 'ludovicchabant/vim-gutentags'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/tagbar'
-Plug 'puppetlabs/puppet-syntax-vim', Cond(!exists('g:vscode'))
-Plug 'scrooloose/nerdcommenter', Cond(!exists('g:vscode'))
-Plug 'tpope/vim-bundler', Cond(!exists('g:vscode'))
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-fugitive', Cond(!exists('g:vscode'))
-Plug 'tpope/vim-rails', Cond(!exists('g:vscode'))
-Plug 'tpope/vim-sensible'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-vinegar', Cond(!exists('g:vscode'))
-Plug 'vim-airline/vim-airline', Cond(!exists('g:vscode'))
-Plug 'vim-airline/vim-airline-themes', Cond(!exists('g:vscode'))
-Plug 'vim-ruby/vim-ruby', Cond(!exists('g:vscode'))
-Plug 'vim-scripts/CmdlineComplete', Cond(!exists('g:vscode'))
 
-if has('nvim')
-  "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+if exists('g:vscode')
+  " VSCode extension
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'godlygeek/tabular'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-surround'
+  Plug 'flazz/vim-colorschemes'
 else
-  "Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  " ordinary Neovim
+  Plug 'rhysd/vim-grammarous'
+  Plug 'Exafunction/codeium.vim'
+  Plug 'Raimondi/delimitMate'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'bronson/vim-trailing-whitespace'
+  Plug 'christoomey/vim-tmux-navigator'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'dense-analysis/ale'
+  Plug 'dstein64/vim-startuptime'
+  Plug 'elzr/vim-json'
+  Plug 'fatih/vim-go'
+  Plug 'flazz/vim-colorschemes'
+  Plug 'ggandor/leap.nvim'
+  Plug 'godlygeek/tabular'
+  Plug 'hashivim/vim-terraform'
+  Plug 'ludovicchabant/vim-gutentags'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'preservim/tagbar'
+  Plug 'puppetlabs/puppet-syntax-vim'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'tpope/vim-bundler'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rails'
+  Plug 'tpope/vim-sensible'
+  Plug 'tpope/vim-surround'
+  Plug 'tpope/vim-vinegar'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'vim-ruby/vim-ruby'
+  Plug 'vim-scripts/CmdlineComplete'
+  Plug 'github/copilot.vim'
+
+  if has('nvim')
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+  else
+    "Plug 'Shougo/deoplete.nvim'
+    Plug 'roxma/nvim-yarp'
+    Plug 'roxma/vim-hug-neovim-rpc'
+  endif
 endif
+
+let g:grammarous#jar_url = 'https://www.languagetool.org/download/LanguageTool-5.9.zip'
+
 let g:deoplete#enable_at_startup = 1
 
 " Initialize plugin system
 call plug#end()
+
+" :w!! to write as root
+cmap w!! w !sudo tee > /dev/null %
 
 " ale
 let b:ale_fixers = ['prettier', 'eslint']
@@ -73,6 +92,8 @@ augroup END
 nmap <F8> :TagbarToggle<CR>
 
 " Set them
+syntax enable
+set termguicolors
 set background=dark
 colorscheme solarized8_dark
 
