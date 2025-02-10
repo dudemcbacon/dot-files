@@ -48,3 +48,7 @@ alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 alias listen="netstat -an -ptcp | grep LISTEN"
 
 alias ctags="`brew --prefix`/bin/ctags"
+
+alias ports="sudo lsof -iTCP -sTCP:LISTEN -n -P | awk 'NR>1 {print \$9, \$1, \$2}' | sed 's/.*://' | while read port process pid; do echo -n \"Port \$port: \"; ps -p \$pid -o command= | sed 's/^-//' | tr -d '\n'; echo \" (PID: \$pid)\"; done | sort -n"
+
+source /Users/bburnett/.config/broot/launcher/bash/br
