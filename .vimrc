@@ -83,6 +83,9 @@ let g:deoplete#enable_at_startup = 1
 " Initialize plugin system
 call plug#end()
 
+" :w!! to write as root
+cmap w!! w !sudo tee > /dev/null %
+
 " ale
 let b:ale_fixers = ['prettier', 'eslint']
 let g:ale_open_list=1

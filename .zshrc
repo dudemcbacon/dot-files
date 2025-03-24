@@ -67,7 +67,7 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(asdf docker tmux)
+plugins=(docker tmux)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -99,8 +99,6 @@ export PATH="/usr/local/sbin:$PATH"
 
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
-
-source /Users/bburnett/.config/broot/launcher/bash/br
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
