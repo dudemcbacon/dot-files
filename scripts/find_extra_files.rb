@@ -1,5 +1,3 @@
-require 'colorize'
-
 def check_directory_files(base_dir)
   Dir.entries(base_dir).select do |entry|
     path = File.join(base_dir, entry)
@@ -12,7 +10,7 @@ def check_directory_files(base_dir)
       unless files.empty?
         puts "\nDirectory: #{path}"
         files.each do |file|
-          puts "  #{file}".red
+          puts "  \e[31m#{file}\e[0m"
         end
       end
     end
