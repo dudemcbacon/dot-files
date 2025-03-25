@@ -31,6 +31,7 @@ export ZSH_TMUX_AUTOSTART=false
 UNAME=`uname`
 
 # Fallback info
+HOSTNAME=`hostname`
 CURRENT_OS='Linux'
 DISTRO=''
 
@@ -81,6 +82,12 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
 
+if [[ $HOSTNAME == 'docker.home.butt.report' ]]; then
+  export PATH="$HOME/bin:$PATH"
+  export ASDF_DATA_DIR="$HOME/.asdf"
+  export PATH="$ASDF_DATA_DIR/shims:$PATH"
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
@@ -106,3 +113,5 @@ export NVM_DIR="$HOME/.nvm"
 
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

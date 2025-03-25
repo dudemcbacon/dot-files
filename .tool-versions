@@ -1,5 +1,5 @@
-ruby 3.2.1
+ruby 3.1.1
 golang 1.18.3
-nodejs 20.13.1
+nodejs 23.2.0
 python 3.10.5
 java adoptopenjdk-jre-18.0.2+9
