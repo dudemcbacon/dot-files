@@ -4,11 +4,12 @@ require 'uri'
 
 # Base URL and cluster
 base_url = 'http://localhost:8080'
-cluster = 'staging_enclave'
 
 # ANSI color codes
 GREEN = "\e[32m"
 RED = "\e[31m"
+BLUE = "\e[34m"
+YELLOW = "\e[33m"
 RESET = "\e[0m"
 
 # Kafka UI container configuration
@@ -18,8 +19,8 @@ KAFKA_UI_ENV = [
   '-e KAFKA_CLUSTERS_0_PROPERTIES_SECURITY_PROTOCOL=`newrelic-vault us read -field=value discovery/staging/stg-fearful-cat/kafka-brokers-tls-security-protocol/endpoint`',
   '-e KAFKA_CLUSTERS_0_READONLY=true',
   "-e KAFKA_CLUSTERS_1_NAME=production_enclave",
-  '-e KAFKA_CLUSTERS_1_BOOTSTRAPSERVERS=`newrelic-vault us read -field=value discovery/staging/stg-fearful-cat/kafka-brokers-tls/endpoint`',
-  '-e KAFKA_CLUSTERS_1_PROPERTIES_SECURITY_PROTOCOL=`newrelic-vault us read -field=value discovery/staging/stg-fearful-cat/kafka-brokers-tls-security-protocol/endpoint`',
+  '-e KAFKA_CLUSTERS_1_BOOTSTRAPSERVERS=`newrelic-vault us read -field=value discovery/production/us-rad-house/kafka-brokers-tls/endpoint`',
+  '-e KAFKA_CLUSTERS_1_PROPERTIES_SECURITY_PROTOCOL=`newrelic-vault us read -field=value discovery/production/us-rad-house/kafka-brokers-tls-security-protocol/endpoint`',
   '-e KAFKA_CLUSTERS_1_READONLY=true'
 ].join(' ')
 
@@ -59,30 +60,35 @@ topics = [
   'entity_product_provisioned'
 ]
 
+# Define clusters
+clusters = ['staging_enclave', 'production_enclave']
 
-puts "\n#{GREEN}Connecting to cluster: #{cluster}#{RESET}\n"
+clusters.each do |cluster|
+  cluster_color = cluster == 'staging_enclave' ? BLUE : YELLOW
+  puts "\n#{cluster_color}Connecting to cluster: #{cluster}#{RESET}\n"
 
-topics.each do |topic|
-  # Construct the URL
-  uri = URI("#{base_url}/api/clusters/#{cluster}/topics/#{topic}/consumer-groups")
-  
-  begin
-    # Make the HTTP request
-    response = Net::HTTP.get_response(uri)
+  topics.each do |topic|
+    # Construct the URL
+    uri = URI("#{base_url}/api/clusters/#{cluster}/topics/#{topic}/consumer-groups")
     
-    if response.is_a?(Net::HTTPSuccess)
-      # Parse JSON response and get unique sorted group IDs
-      consumer_groups = JSON.parse(response.body)
-      unique_groups = consumer_groups.map { |group| group['groupId'] }.uniq.sort
+    begin
+      # Make the HTTP request
+      response = Net::HTTP.get_response(uri)
       
-      puts "\n#{GREEN}Consumer groups for topic '#{topic}':#{RESET}"
-      unique_groups.each do |group_id|
-        puts "- #{group_id}"
+      if response.is_a?(Net::HTTPSuccess)
+        # Parse JSON response and get unique sorted group IDs
+        consumer_groups = JSON.parse(response.body)
+        unique_groups = consumer_groups.map { |group| group['groupId'] }.uniq.sort
+        
+        puts "\n#{cluster_color}Consumer groups for topic '#{topic}':#{RESET}"
+        unique_groups.each do |group_id|
+          puts "- #{group_id}"
+        end
+      else
+        puts "#{RED}Error fetching data for topic '#{topic}': #{response.code} #{response.message}#{RESET}"
       end
-    else
-      puts "#{RED}Error fetching data for topic '#{topic}': #{response.code} #{response.message}#{RESET}"
+    rescue => e
+      puts "#{RED}Error processing topic '#{topic}': #{e.message}#{RESET}"
     end
-  rescue => e
-    puts "#{RED}Error processing topic '#{topic}': #{e.message}#{RESET}"
   end
 end
