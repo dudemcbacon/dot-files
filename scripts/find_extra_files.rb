@@ -4,7 +4,8 @@ def check_directory_files(base_dir)
     if File.directory?(path) && !['.', '..'].include?(entry)
       files = Dir.entries(path).select do |file| 
         File.file?(File.join(path, file)) && 
-        File.basename(file, '.*') != entry
+        (!file.end_with?('.mkv', '.en.srt') || 
+         File.basename(file, File.extname(file)).gsub('-', '') != entry.gsub('-', ''))
       end
       
       unless files.empty?
