@@ -55,8 +55,44 @@ def check_files_in_directory(dir_path, dir_name, allowed_extensions, full_path, 
   end
 end
 
-def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_extensions, full_path, ignore_years)
+def count_extensions(dir_path)
+  extension_counts = Hash.new(0)
+  
+  Dir.entries(dir_path).each do |file|
+    file_path = File.join(dir_path, file)
+    next unless File.file?(file_path)
+    
+    extension = if file.end_with?('.en.srt')
+                 '.en.srt'
+               elsif file.end_with?('.en.hi.srt')
+                 '.en.hi.srt'
+               else
+                 File.extname(file)
+               end
+    
+    extension_counts[extension] += 1 unless extension.empty?
+  end
+  
+  extension_counts
+end
+
+def display_extension_table(extension_counts)
+  puts "\nFile Extension Counts:"
+  puts "====================="
+  puts "Extension | Count"
+  puts "----------|-------"
+  extension_counts.each do |ext, count|
+    printf "%-9s | %d\n", ext, count
+  end
+  puts "====================="
+end
+
+def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_extensions, full_path, ignore_years, show_extensions)
   if single_dir
+    if show_extensions
+      extension_counts = count_extensions(base_dir)
+      display_extension_table(extension_counts)
+    end
     check_files_in_directory(base_dir, File.basename(base_dir), allowed_extensions, full_path, ignore_years)
     return
   end
@@ -67,6 +103,17 @@ def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_
   end
 
   entries = entries.take(num_dirs) if num_dirs
+
+  if show_extensions
+    total_extension_counts = Hash.new(0)
+    entries.each do |entry|
+      path = File.join(base_dir, entry)
+      count_extensions(path).each do |ext, count|
+        total_extension_counts[ext] += count
+      end
+    end
+    display_extension_table(total_extension_counts)
+  end
 
   entries.each do |entry|
     path = File.join(base_dir, entry)
@@ -93,6 +140,9 @@ OptionParser.new do |opts|
   opts.on("-y", "--ignore-years", "Ignore year mismatches between directory and file names") do
     options[:ignore_years] = true
   end
+  opts.on("-c", "--count-extensions", "Display a table of file extensions and their counts") do
+    options[:show_extensions] = true
+  end
 end.parse!
 
 # Get directory from command line or use current directory
@@ -102,4 +152,4 @@ dir = ARGV[0] || Dir.pwd
 allowed_extensions = ['.mkv', '.en.srt', '.en.hi.srt']
 allowed_extensions += options[:additional_extensions] if options[:additional_extensions]
 
-check_directory_files(dir, options[:num_dirs], options[:single_dir], allowed_extensions, options[:full_path], options[:ignore_years])
+check_directory_files(dir, options[:num_dirs], options[:single_dir], allowed_extensions, options[:full_path], options[:ignore_years], options[:show_extensions])
