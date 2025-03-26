@@ -11,9 +11,20 @@ def check_directory_files(base_dir, num_dirs = nil)
   entries.each do |entry|
     path = File.join(base_dir, entry)
     files = Dir.entries(path).select do |file| 
-      File.file?(File.join(path, file)) && 
-      (!file.end_with?('.mkv', '.en.srt') || 
-       File.basename(file, File.extname(file)).gsub('-', '') != entry.gsub('-', ''))
+      file_path = File.join(path, file)
+      return false unless File.file?(file_path)
+
+      allowed_extensions = ['.mkv', '.en.srt']
+      if file.end_with?(*allowed_extensions)
+        # Get base filename without extension
+        extension = file.end_with?('.en.srt') ? '.en.srt' : File.extname(file)
+        base_name = File.basename(file, extension)
+        
+        # Compare normalized names (without hyphens)
+        base_name.gsub('-', '') == entry.gsub('-', '')
+      else
+        true
+      end
     end
     
     unless files.empty?
