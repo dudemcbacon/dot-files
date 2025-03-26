@@ -12,7 +12,10 @@ def check_files_in_directory(dir_path, dir_name)
       base_name = File.basename(file, extension)
       
       # Show files that don't match the directory name
-      base_name.gsub('-', '') != dir_name.gsub('-', '')
+      # Normalize both strings by removing hyphens and extra spaces
+      normalized_dir = dir_name.gsub(/[-\s]+/, ' ').strip
+      normalized_file = base_name.gsub(/[-\s]+/, ' ').strip
+      normalized_file != normalized_dir
     else
       # Show all other files
       true
