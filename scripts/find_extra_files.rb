@@ -5,10 +5,16 @@ def check_files_in_directory(dir_path, dir_name)
     file_path = File.join(dir_path, file)
     next false unless File.file?(file_path)
 
-    allowed_extensions = ['.mkv', '.en.srt']
+    allowed_extensions = ['.mkv', '.en.srt', '.en.hi.srt']
     if file.end_with?(*allowed_extensions)
       # Get base filename without extension
-      extension = file.end_with?('.en.srt') ? '.en.srt' : File.extname(file)
+      extension = if file.end_with?('.en.srt')
+                   '.en.srt'
+                 elsif file.end_with?('.en.hi.srt')
+                   '.en.hi.srt'
+                 else
+                   File.extname(file)
+                 end
       base_name = File.basename(file, extension)
       
       # Show files that don't match the directory name
