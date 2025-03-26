@@ -1,6 +1,6 @@
 require 'optparse'
 
-def check_files_in_directory(dir_path, dir_name, allowed_extensions)
+def check_files_in_directory(dir_path, dir_name, allowed_extensions, full_path)
   files = Dir.entries(dir_path).select do |file| 
     file_path = File.join(dir_path, file)
     next false unless File.file?(file_path)
@@ -30,14 +30,15 @@ def check_files_in_directory(dir_path, dir_name, allowed_extensions)
   unless files.empty?
     puts "\nDirectory: #{dir_path}"
     files.each do |file|
-      puts "  \e[31m#{file}\e[0m"
+      file_to_show = full_path ? File.join(dir_path, file) : file
+      puts "  \e[31m#{file_to_show}\e[0m"
     end
   end
 end
 
-def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_extensions)
+def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_extensions, full_path)
   if single_dir
-    check_files_in_directory(base_dir, File.basename(base_dir), allowed_extensions)
+    check_files_in_directory(base_dir, File.basename(base_dir), allowed_extensions, full_path)
     return
   end
 
@@ -50,7 +51,7 @@ def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_
 
   entries.each do |entry|
     path = File.join(base_dir, entry)
-    check_files_in_directory(path, entry, allowed_extensions)
+    check_files_in_directory(path, entry, allowed_extensions, full_path)
   end
 end
 
@@ -67,6 +68,9 @@ OptionParser.new do |opts|
   opts.on("-e", "--extensions EXTENSIONS", "Comma-separated list of additional extensions to ignore") do |exts|
     options[:additional_extensions] = exts.split(',').map { |ext| ext.strip }
   end
+  opts.on("-f", "--full-path", "Display full path for extra files") do
+    options[:full_path] = true
+  end
 end.parse!
 
 # Get directory from command line or use current directory
@@ -76,4 +80,4 @@ dir = ARGV[0] || Dir.pwd
 allowed_extensions = ['.mkv', '.en.srt', '.en.hi.srt']
 allowed_extensions += options[:additional_extensions] if options[:additional_extensions]
 
-check_directory_files(dir, options[:num_dirs], options[:single_dir], allowed_extensions)
+check_directory_files(dir, options[:num_dirs], options[:single_dir], allowed_extensions, options[:full_path])
