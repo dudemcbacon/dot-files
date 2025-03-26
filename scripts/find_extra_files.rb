@@ -1,11 +1,10 @@
 require 'optparse'
 
-def check_files_in_directory(dir_path, dir_name)
+def check_files_in_directory(dir_path, dir_name, allowed_extensions)
   files = Dir.entries(dir_path).select do |file| 
     file_path = File.join(dir_path, file)
     next false unless File.file?(file_path)
 
-    allowed_extensions = ['.mkv', '.en.srt', '.en.hi.srt']
     if file.end_with?(*allowed_extensions)
       # Get base filename without extension
       extension = if file.end_with?('.en.srt')
@@ -36,9 +35,9 @@ def check_files_in_directory(dir_path, dir_name)
   end
 end
 
-def check_directory_files(base_dir, num_dirs = nil, single_dir = false)
+def check_directory_files(base_dir, num_dirs = nil, single_dir = false, allowed_extensions)
   if single_dir
-    check_files_in_directory(base_dir, File.basename(base_dir))
+    check_files_in_directory(base_dir, File.basename(base_dir), allowed_extensions)
     return
   end
 
@@ -51,7 +50,7 @@ def check_directory_files(base_dir, num_dirs = nil, single_dir = false)
 
   entries.each do |entry|
     path = File.join(base_dir, entry)
-    check_files_in_directory(path, entry)
+    check_files_in_directory(path, entry, allowed_extensions)
   end
 end
 
@@ -65,8 +64,16 @@ OptionParser.new do |opts|
   opts.on("-s", "--single", "Check only the specified directory (no subdirectories)") do
     options[:single_dir] = true
   end
+  opts.on("-e", "--extensions EXTENSIONS", "Comma-separated list of additional extensions to ignore") do |exts|
+    options[:additional_extensions] = exts.split(',').map { |ext| ext.strip }
+  end
 end.parse!
 
 # Get directory from command line or use current directory
 dir = ARGV[0] || Dir.pwd
-check_directory_files(dir, options[:num_dirs], options[:single_dir])
+
+# Combine default extensions with any additional ones
+allowed_extensions = ['.mkv', '.en.srt', '.en.hi.srt']
+allowed_extensions += options[:additional_extensions] if options[:additional_extensions]
+
+check_directory_files(dir, options[:num_dirs], options[:single_dir], allowed_extensions)
