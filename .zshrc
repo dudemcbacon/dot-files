@@ -82,11 +82,10 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
 
-if [[ $HOSTNAME == 'docker.home.butt.report' ]]; then
-  export PATH="$HOME/bin:$PATH"
-  export ASDF_DATA_DIR="$HOME/.asdf"
-  export PATH="$ASDF_DATA_DIR/shims:$PATH"
-fi
+source ~/.asdf/asdf.sh
+export PATH="$HOME/bin:$PATH"
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
