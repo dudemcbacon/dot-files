@@ -31,6 +31,7 @@ export ZSH_TMUX_AUTOSTART=false
 UNAME=`uname`
 
 # Fallback info
+HOSTNAME=`hostname`
 CURRENT_OS='Linux'
 DISTRO=''
 
@@ -73,6 +74,7 @@ plugins=(docker tmux)
 if [[ $CURRENT_OS == 'OS X' ]]; then
   plugins+=(macos brew iterm2)
 elif [[ $CURRENT_OS == 'Linux' ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   plugins+=()
   if [[ $DISTRO == 'CentOS' ]]; then
     plugins+=(centos)
@@ -80,6 +82,11 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
+
+source ~/.asdf/asdf.sh
+export PATH="$HOME/bin:$PATH"
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,3 +119,4 @@ export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
+
