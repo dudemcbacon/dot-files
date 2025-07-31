@@ -9,6 +9,7 @@ return {
     ensure_installed = {
       "lua",
       "vim",
+      "graphql",
       -- add more arguments for adding more treesitter parsers
     },
   },
