@@ -31,6 +31,7 @@ export ZSH_TMUX_AUTOSTART=false
 UNAME=`uname`
 
 # Fallback info
+HOSTNAME=`hostname`
 CURRENT_OS='Linux'
 DISTRO=''
 
@@ -67,12 +68,17 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
+<<<<<<< HEAD
 plugins=(asdf docker tmux ssh-agent)
+=======
+plugins=(docker tmux)
+>>>>>>> 7a087d37108aa80931b82b6c37b9574cb2f86a98
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
   plugins+=(macos brew iterm2)
 elif [[ $CURRENT_OS == 'Linux' ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   plugins+=()
   if [[ $DISTRO == 'CentOS' ]]; then
     plugins+=(centos)
@@ -80,6 +86,11 @@ elif [[ $CURRENT_OS == 'Linux' ]]; then
 elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
+
+source ~/.asdf/asdf.sh
+export PATH="$HOME/bin:$PATH"
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -106,3 +117,10 @@ export NVM_DIR="$HOME/.nvm"
 
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
+
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
