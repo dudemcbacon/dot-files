@@ -6,3 +6,4 @@
 *.swp
 .config/GNS3/
 .config/wireshark/
+.config/nvim/lazy-lock.json
