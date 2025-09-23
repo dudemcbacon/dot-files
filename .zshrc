@@ -28,10 +28,10 @@ export DEV_DIR=${HOME}/development
 export ZSH_TMUX_AUTOSTART=false
 
 # Detect OS
-UNAME=`uname`
+UNAME=$(uname)
 
 # Fallback info
-HOSTNAME=`hostname`
+HOSTNAME=$(hostname)
 CURRENT_OS='Linux'
 DISTRO=''
 
@@ -57,9 +57,9 @@ fi
 . ~/.aliases
 
 # OS specific aliases, functions, variables
-if [[ `uname` == 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
   . ~/.macrc
-elif [[ `uname` == 'Linux' ]]; then
+elif [[ $(uname) == 'Linux' ]]; then
   . ~/.linuxrc
 fi
 
@@ -83,7 +83,6 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
 
-source ~/.asdf/asdf.sh
 export PATH="$HOME/bin:$PATH"
 export ASDF_DATA_DIR="$HOME/.asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH"
@@ -108,8 +107,8 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
@@ -120,3 +119,4 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
+***REMOVED***
