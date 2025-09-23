@@ -68,7 +68,7 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(docker tmux)
+plugins=(asdf docker tmux ssh-agent)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
