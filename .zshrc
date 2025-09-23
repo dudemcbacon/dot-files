@@ -28,10 +28,10 @@ export DEV_DIR=${HOME}/development
 export ZSH_TMUX_AUTOSTART=false
 
 # Detect OS
-UNAME=`uname`
+UNAME=$(uname)
 
 # Fallback info
-HOSTNAME=`hostname`
+HOSTNAME=$(hostname)
 CURRENT_OS='Linux'
 DISTRO=''
 
@@ -57,9 +57,9 @@ fi
 . ~/.aliases
 
 # OS specific aliases, functions, variables
-if [[ `uname` == 'Darwin' ]]; then
+if [[ $(uname) == 'Darwin' ]]; then
   . ~/.macrc
-elif [[ `uname` == 'Linux' ]]; then
+elif [[ $(uname) == 'Linux' ]]; then
   . ~/.linuxrc
 fi
 
@@ -68,12 +68,13 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(docker tmux)
+plugins=(asdf docker tmux ssh-agent)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
   plugins+=(macos brew iterm2)
 elif [[ $CURRENT_OS == 'Linux' ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
   plugins+=()
   if [[ $DISTRO == 'CentOS' ]]; then
     plugins+=(centos)
@@ -82,11 +83,9 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
   plugins+=(cygwin)
 fi
 
-if [[ $HOSTNAME == 'docker.home.butt.report' ]]; then
-  export PATH="$HOME/bin:$PATH"
-  export ASDF_DATA_DIR="$HOME/.asdf"
-  export PATH="$ASDF_DATA_DIR/shims:$PATH"
-fi
+export PATH="$HOME/bin:$PATH"
+export ASDF_DATA_DIR="$HOME/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,10 +107,16 @@ eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
 
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+# append completions to fpath
+fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# initialise completions with ZSH's compinit
+autoload -Uz compinit && compinit
+
+export AVANTE_GEMINI_API_KEY=AIzaSyAJuruBZkb5HvBg_ZX20mgyVqtwOfvv1Og
