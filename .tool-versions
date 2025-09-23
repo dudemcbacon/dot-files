@@ -1,6 +1,6 @@
-ruby 3.1.1
-golang 1.18.3
-nodejs 23.2.0
+ruby 3.2.1
+golang 1.18.10
+nodejs 24.4.1
 python 3.12.6
 java adoptopenjdk-jre-18.0.2+9
 rust 1.82.0
