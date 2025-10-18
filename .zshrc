@@ -120,3 +120,6 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 autoload -Uz compinit && compinit
 
 ***REMOVED***
+
+# so sudoedit uses nvim
+export SUDO_EDITOR=/usr/bin/nvim
