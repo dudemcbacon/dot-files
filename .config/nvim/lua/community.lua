@@ -20,7 +20,6 @@ return {
   { import = "astrocommunity.pack.terraform" },
   { import = "astrocommunity.pack.typescript" },
   { import = "astrocommunity.pack.yaml" },
-  { import = "astrocommunity.programming-language-support.rest-nvim" },
   { import = "astrocommunity.recipes.vscode" },
   { import = "astrocommunity.test.neotest" },
 }
