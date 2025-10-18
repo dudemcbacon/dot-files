@@ -120,3 +120,6 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 autoload -Uz compinit && compinit
 
 export AVANTE_GEMINI_API_KEY=AIzaSyAJuruBZkb5HvBg_ZX20mgyVqtwOfvv1Og
+
+# so sudoedit uses nvim
+export SUDO_EDITOR=/usr/bin/nvim
