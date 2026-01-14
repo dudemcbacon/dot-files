@@ -1,3 +1,5 @@
 .ssh/*.key
 .ssh/id_ed25519
 .ssh/id_rsa
+.newrelic_rc
+.secrets_rc
