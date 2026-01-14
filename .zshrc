@@ -11,8 +11,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-source ~/.nwearc
-
 # Misc. config variables
 export TERM="xterm-256color"
 export EDITOR="nvim"
@@ -92,11 +90,7 @@ source $ZSH/oh-my-zsh.sh
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 if [ -e ~/.asdf/plugins/java/set-java-home.zsh ]; then
-  . ~/.asdf/plugins/java/set-java-home.zsh
-fi
-
-if [ -e ~/.newrelic_rc ]; then
-  source ~/.newrelic_rc
+  . .asdf/plugins/java/set-java-home.zsh
 fi
 
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
@@ -119,4 +113,14 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-export AVANTE_GEMINI_API_KEY=redacted_value
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/bburnett/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export DOCKER_HOST=unix:///Users/bburnett/.rd/docker.sock
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+
+if [[ "$(hostname)" == "Q3392TY4GM" ]]; then
+  source ~/.newrelic_rc
+fi
+
+source ~/.secrets_rc
