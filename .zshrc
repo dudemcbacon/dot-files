@@ -124,3 +124,6 @@ if [[ "$(hostname)" == "Q3392TY4GM" ]]; then
 fi
 
 source ~/.secrets_rc
+
+# so sudoedit uses nvim
+export SUDO_EDITOR=/usr/bin/nvim
