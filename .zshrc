@@ -66,7 +66,7 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(asdf docker tmux ssh-agent)
+plugins=(asdf fzf docker tmux ssh-agent)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -90,7 +90,7 @@ source $ZSH/oh-my-zsh.sh
 zstyle :omz:plugins:ssh-agent agent-forwarding on
 
 if [ -e ~/.asdf/plugins/java/set-java-home.zsh ]; then
-  . .asdf/plugins/java/set-java-home.zsh
+  . ~/.asdf/plugins/java/set-java-home.zsh
 fi
 
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
@@ -127,3 +127,4 @@ source ~/.secrets_rc
 
 # so sudoedit uses nvim
 export SUDO_EDITOR=/usr/bin/nvim
+export PATH="$HOME/.local/bin:$PATH"
