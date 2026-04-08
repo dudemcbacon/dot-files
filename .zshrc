@@ -11,8 +11,6 @@ export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-source ~/.nwearc
-
 # Misc. config variables
 export TERM="xterm-256color"
 export EDITOR="nvim"
@@ -68,7 +66,7 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(asdf docker tmux ssh-agent)
+plugins=(asdf fzf docker tmux ssh-agent)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -95,10 +93,6 @@ if [ -e ~/.asdf/plugins/java/set-java-home.zsh ]; then
   . ~/.asdf/plugins/java/set-java-home.zsh
 fi
 
-if [ -e ~/.newrelic_rc ]; then
-  source ~/.newrelic_rc
-fi
-
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
@@ -119,5 +113,18 @@ fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/Users/bburnett/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+export DOCKER_HOST=unix:///Users/bburnett/.rd/docker.sock
+export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+
+if [[ "$(hostname)" == "Q3392TY4GM" ]]; then
+  source ~/.newrelic_rc
+fi
+
+source ~/.secrets_rc
+
 # so sudoedit uses nvim
 export SUDO_EDITOR=/usr/bin/nvim
+export PATH="$HOME/.local/bin:$PATH"
