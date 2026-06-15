@@ -66,7 +66,7 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(asdf fzf docker tmux ssh-agent)
+plugins=(fzf docker tmux ssh-agent)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -82,16 +82,10 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
 fi
 
 export PATH="$HOME/bin:$PATH"
-export ASDF_DATA_DIR="$HOME/.asdf"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-
-if [ -e ~/.asdf/plugins/java/set-java-home.zsh ]; then
-  . ~/.asdf/plugins/java/set-java-home.zsh
-fi
 
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
@@ -107,9 +101,9 @@ export NVM_DIR="$HOME/.nvm"
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-# append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# mise manages runtime versions (replaces asdf); activation sets up
+# shims, PATH, and env vars like JAVA_HOME
+eval "$(mise activate zsh)"
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 

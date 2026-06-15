@@ -4,6 +4,7 @@
 # 1b. Make sure git is installed.
 # 1c. Make sure tmux is installed
 # 1d. Make sure pip is installed.
+# 1e. Make sure mise is installed.
 # 2. Install oh-my-zsh from GitHub
 # 3. Link appropriate dot-files
 #
@@ -65,22 +66,12 @@ elif [ "$system_type" = "Linux" ]; then
 
     if [ "$distro" = \"Aurora\" ]; then
         log "Setting up Aurora Linux environment"
-        # Since, in Aurora, asdf is installed via brew, skip the installation section further down the script
-        SKIP_ASDF_INSTALL=true
+        # Aurora ships its own brew, so skip the linuxbrew install further down the script
+        SKIP_LINUXBREW_INSTALL=true
         SKIP_STARSHIP_INSTALL=true
         log "Installing packages via brew"
-        brew install asdf libyaml libffi starship nvim ctags direnv
-
-        # Install asdf plugins and versions
-        log "Installing asdf plugins"
-        set +e
-        asdf plugin add ruby
-        asdf plugin add java
-        asdf plugin add python
-        asdf plugin add golang
-        asdf plugin add nodejs
-        set -e
-        asdf install
+        brew install mise libyaml libffi starship nvim ctags direnv
+        # Runtime versions are installed by the mise section further down the script
     elif [ "$distro" = \"Debian\ GNU/Linux\" ]; then
         sudo apt-get update
 
@@ -130,8 +121,25 @@ check_command nvim "neovim"
 check_command direnv
 check_command ctags "universal-ctags"
 
+# Install mise
+if ! command -v mise >/dev/null 2>&1; then
+    log "Installing mise"
+    if command -v brew >/dev/null 2>&1; then
+        brew install mise
+    else
+        curl https://mise.run | sh
+    fi
+    if [ $? -ne 0 ]; then
+        log "Error: Problem installing mise"
+        exit 1
+    fi
+fi
+# The curl installer drops mise in ~/.local/bin; make sure it's reachable for
+# the rest of this script regardless of how it was installed
+export PATH="${HOME}/.local/bin:${PATH}"
+
 # Install linux brew
-if [ "${SKIP_ASDF_INSTALL}" != "true" ]; then
+if [ "${SKIP_LINUXBREW_INSTALL}" != "true" ]; then
     if [ ! -e /home/linuxbrew/.linuxbrew/bin/brew ]; then
         log "Installing linuxbrew"
         /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -175,30 +183,14 @@ if [ ! -e ${DEV_DIR}/.oh-my-zsh ]; then
     fi
 fi
 
-# Install asdf
-if [ "${SKIP_ASDF_INSTALL}" != "true" ]; then
-    if [ ! -e ${HOME}/.asdf ]; then
-        log "Installing asdf"
-        git clone https://github.com/asdf-vm/asdf.git ~/.asdf
-        if [ $? -eq 128 ]; then
-            log "Error: Problem installing asdf"
-            exit 1
-        fi
-    fi
-    if [ "$system_type" = "Darwin" ]; then
-        source "/opt/homebrew/opt/asdf/libexec/asdf.sh"
-    else
-        source ~/.asdf/asdf.sh
-    fi
-    log "Installing asdf plugins"
-    set +e
-    asdf plugin add ruby
-    asdf plugin add java
-    asdf plugin add python
-    asdf plugin add golang
-    asdf plugin add nodejs
-    set -e
-    asdf install
+# Install runtime versions via mise (reads ~/.tool-versions)
+log "Installing runtime versions via mise"
+# Trust the global config so mise installs non-interactively
+mise trust "${HOME}/.tool-versions" >/dev/null 2>&1 || true
+mise install
+if [ $? -ne 0 ]; then
+    log "Error: Problem installing runtimes via mise"
+    exit 1
 fi
 
 # Prep vim-plug
