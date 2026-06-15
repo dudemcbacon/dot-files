@@ -1,8 +1,7 @@
 deno 2.5.4
 golang 1.18.10
-java adoptopenjdk-jre-18.0.2+9
 nodejs 24.4.1
 perl 5.42.0
-python 3.12.6
-ruby 3.2.1
+python 3.14.5
+ruby 4.0.5
 rust 1.82.0
