@@ -101,6 +101,10 @@ export NVM_DIR="$HOME/.nvm"
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
 
+# mise manages runtime versions (replaces asdf); activation sets up
+# shims, PATH, and env vars like JAVA_HOME
+eval "$(mise activate zsh)"
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
@@ -119,8 +123,6 @@ source ~/.secrets_rc
 # so sudoedit uses nvim
 export SUDO_EDITOR=/usr/bin/nvim
 export PATH="$HOME/.local/bin:$PATH"
-
-eval "$(mise activate zsh)"
 
 export CLAUDE_CODE_REMOTE_SEND_KEEPALIVES=true
 export BUN_CONFIG_HTTP_IDLE_TIMEOUT=300
