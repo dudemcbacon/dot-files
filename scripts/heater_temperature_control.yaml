@@ -1,0 +1,53 @@
+alias: "Smart heater temperature control"
+description: "Automatically controls heater switch based on temperature thresholds and time"
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.temperature_sensor  # Replace with your temperature sensor entity ID
+    above: 22  # Replace with your desired upper temperature threshold
+  - platform: numeric_state
+    entity_id: sensor.temperature_sensor  # Replace with your temperature sensor entity ID
+    below: 18  # Replace with your desired lower temperature threshold
+condition:
+  - condition: or
+    conditions:
+      # For turning off
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: switch.heater  # Replace with your heater switch entity ID
+            state: "on"
+          - condition: numeric_state
+            entity_id: sensor.temperature_sensor
+            above: 22
+      # For turning on
+      - condition: and
+        conditions:
+          - condition: state
+            entity_id: switch.heater  # Replace with your heater switch entity ID
+            state: "off"
+          - condition: numeric_state
+            entity_id: sensor.temperature_sensor
+            below: 18
+          - condition: time
+            after: "08:30:00"
+action:
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.temperature_sensor
+            above: 22
+        sequence:
+          - service: switch.turn_off
+            target:
+              entity_id: switch.heater  # Replace with your heater switch entity ID
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.temperature_sensor
+            below: 18
+          - condition: time
+            after: "08:30:00"
+        sequence:
+          - service: switch.turn_on
+            target:
+              entity_id: switch.heater  # Replace with your heater switch entity ID
+mode: single  # Ensures only one instance of the automation runs at a time 
