@@ -2,7 +2,7 @@
 
 directories=($(docker container ls --filter label=com.docker.compose.project --format '{{.Label "com.docker.compose.project"}}' | sort | uniq | xargs -I {} echo "$HOME/config/{}"))
 
-echo $directories >"$HOME/.last-docker-restart_$(date +%Y%m%d_%H%M%S).txt"
+printf "%s\n" "${directories[@]}" >"$HOME/.last-docker-restart_$(date +%Y%m%d_%H%M%S).txt"
 
 # Process each directory
 # First bring down all containers
