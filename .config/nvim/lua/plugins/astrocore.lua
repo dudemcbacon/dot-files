@@ -77,7 +77,6 @@ return {
 
         -- setting a mapping to false will disable it
         -- ["<C-S>"] = false,
-        --
       },
     },
   },

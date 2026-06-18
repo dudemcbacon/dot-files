@@ -26,13 +26,14 @@ KAFKA_UI_ENV = [
 
 # Check if Kafka UI container is running
 def check_and_start_kafka_ui
-  container_name = "kafka-ui"
+  container_name = "kafka-ui-consumer"
   
   # Check if container exists and is running
   container_status = `docker ps -a --filter name=#{container_name} --format "{{.Status}}" 2>/dev/null`.strip
   
   if container_status.empty?
     puts "#{GREEN}Starting Kafka UI container...#{RESET}"
+    require 'pry'; binding.pry
     system("docker run -d --name #{container_name} -p 8080:8080 #{KAFKA_UI_ENV} provectuslabs/kafka-ui")
     sleep 5  # Give the container time to start
   elsif !container_status.include?('Up')

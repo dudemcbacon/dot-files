@@ -25,5 +25,3 @@ end
 
 require "lazy_setup"
 require "polish"
-
-if init_debug then require("osv").launch { port = 8086, blocking = true } end

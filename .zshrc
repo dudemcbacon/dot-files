@@ -66,7 +66,7 @@ ZSH=${DEV_DIR}/.oh-my-zsh
 ZSH_CUSTOM=${DEV_DIR}/dot-files/oh-my-zsh-custom
 
 # Universal plugins
-plugins=(asdf fzf docker tmux ssh-agent)
+plugins=(fzf docker tmux ssh-agent)
 
 # OS specifig plugins
 if [[ $CURRENT_OS == 'OS X' ]]; then
@@ -82,16 +82,10 @@ elif [[ $CURRENT_OS == 'Cygwin' ]]; then
 fi
 
 export PATH="$HOME/bin:$PATH"
-export ASDF_DATA_DIR="$HOME/.asdf"
-export PATH="$ASDF_DATA_DIR/shims:$PATH"
 
 source $ZSH/oh-my-zsh.sh
 
 zstyle :omz:plugins:ssh-agent agent-forwarding on
-
-if [ -e ~/.asdf/plugins/java/set-java-home.zsh ]; then
-  . ~/.asdf/plugins/java/set-java-home.zsh
-fi
 
 export PATH="/usr/local/opt/icu4c/bin:$PATH"
 export PATH="/usr/local/opt/icu4c/sbin:$PATH"
@@ -107,9 +101,10 @@ export NVM_DIR="$HOME/.nvm"
 # For yadm encrypt to work correctly:
 export GPG_TTY=$(tty)
 
-export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-# append completions to fpath
-fpath=(${ASDF_DATA_DIR:-$HOME/.asdf}/completions $fpath)
+# mise manages runtime versions (replaces asdf); activation sets up
+# shims, PATH, and env vars like JAVA_HOME
+eval "$(mise activate zsh)"
+
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
@@ -128,3 +123,11 @@ source ~/.secrets_rc
 # so sudoedit uses nvim
 export SUDO_EDITOR=/usr/bin/nvim
 export PATH="$HOME/.local/bin:$PATH"
+
+export CLAUDE_CODE_REMOTE_SEND_KEEPALIVES=true
+export BUN_CONFIG_HTTP_IDLE_TIMEOUT=300
+export BUN_CONFIG_HTTP_RETRY_COUNT=3
+export CLAUDE_STREAM_IDLE_TIMEOUT_MS=120000
+export NODE_OPTIONS="--dns-result-order=ipv4first"
+export LD_PRELOAD="$HOME/.local/lib/libkeepalive.so${LD_PRELOAD:+:$LD_PRELOAD}"
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
