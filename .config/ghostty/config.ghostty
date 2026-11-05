@@ -1,2 +1,3 @@
 font-family = DejaVuSansM Nerd Font Mono
 theme = Rose Pine Moon
+shell-integration-features = ssh-env,ssh-terminfo

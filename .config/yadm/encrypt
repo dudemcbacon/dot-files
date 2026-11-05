@@ -3,3 +3,4 @@
 .ssh/id_rsa
 .newrelic_rc
 .secrets_rc
+.ignore_emails

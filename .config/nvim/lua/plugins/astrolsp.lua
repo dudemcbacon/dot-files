@@ -38,6 +38,7 @@ return {
     -- enable servers that you already have installed without mason
     servers = {
       -- "pyright"
+      "ruby_lsp",
     },
     -- customize language server configuration passed to `vim.lsp.config`
     -- client specific configuration can also go in `lsp/` in your configuration root (see `:h lsp-config`)
@@ -52,6 +53,7 @@ return {
 
       -- the key is the server that is being setup with `vim.lsp.config`
       -- rust_analyzer = false, -- setting a handler to false will disable the set up of that language server
+      solargraph = false, -- use ruby_lsp instead (solargraph crashes on rbs 4.x + Ruby 3.4)
     },
     -- Configure buffer local auto commands to add when attaching a language server
     autocmds = {
