@@ -108,14 +108,22 @@ eval "$(mise activate zsh)"
 # initialise completions with ZSH's compinit
 autoload -Uz compinit && compinit
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/Users/bburnett/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
-export DOCKER_HOST=unix:///Users/bburnett/.rd/docker.sock
-export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
-
 if [[ "$(hostname)" == "Q3392TY4GM" ]]; then
+  ### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+  export PATH="/Users/bburnett/.rd/bin:$PATH"
+  ### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+  export DOCKER_HOST=unix:///Users/bburnett/.rd/docker.sock
+  export TESTCONTAINERS_DOCKER_SOCKET_OVERRIDE=/var/run/docker.sock
+
   source ~/.newrelic_rc
+
+  export CLAUDE_CODE_REMOTE_SEND_KEEPALIVES=true
+  export BUN_CONFIG_HTTP_IDLE_TIMEOUT=300
+  export BUN_CONFIG_HTTP_RETRY_COUNT=3
+  export CLAUDE_STREAM_IDLE_TIMEOUT_MS=120000
+  export NODE_OPTIONS="--dns-result-order=ipv4first"
+  export LD_PRELOAD="$HOME/.local/lib/libkeepalive.so${LD_PRELOAD:+:$LD_PRELOAD}"
+  export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 fi
 
 source ~/.secrets_rc
@@ -124,10 +132,3 @@ source ~/.secrets_rc
 export SUDO_EDITOR=/usr/bin/nvim
 export PATH="$HOME/.local/bin:$PATH"
 
-export CLAUDE_CODE_REMOTE_SEND_KEEPALIVES=true
-export BUN_CONFIG_HTTP_IDLE_TIMEOUT=300
-export BUN_CONFIG_HTTP_RETRY_COUNT=3
-export CLAUDE_STREAM_IDLE_TIMEOUT_MS=120000
-export NODE_OPTIONS="--dns-result-order=ipv4first"
-export LD_PRELOAD="$HOME/.local/lib/libkeepalive.so${LD_PRELOAD:+:$LD_PRELOAD}"
-export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
